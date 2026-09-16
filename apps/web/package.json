@@ -1,0 +1,30 @@
+{
+  "name": "@org/web",
+  "version": "0.0.1",
+  "private": true,
+  "nx": {
+    "projectType": "application",
+    "tags": [
+      "scope:web"
+    ],
+    "targets": {
+      "serve": {
+        "dependsOn": [
+          "@org/api:serve"
+        ]
+      },
+      "dev": {
+        "dependsOn": [
+          "@org/api:serve"
+        ]
+      },
+      "preview": {
+        "dependsOn": [
+          "build",
+          "@org/api:serve"
+        ]
+      }
+    }
+  },
+  "devDependencies": {}
+}
