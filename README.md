@@ -54,6 +54,130 @@ npx nx run-many -t lint test build e2e --parallel=3
 npx nx graph
 ```
 
+## ☁️ Deploy to AWS EC2
+
+The production deployment uses Nginx for the React frontend and PM2 for the
+Express API. The API listens on port `3333` locally, while Nginx serves the
+frontend and proxies `/api` requests to it.
+
+### 1. Create the EC2 instance
+
+Create an Ubuntu 24.04 LTS instance and configure its security group to allow:
+
+- SSH (`22`) from your IP address only
+- HTTP (`80`) from anywhere
+- HTTPS (`443`) from anywhere
+
+Keep port `3333` closed to the public internet.
+
+### 2. Install the server dependencies
+
+Connect to the instance over SSH:
+
+```bash
+ssh -i your-key.pem ubuntu@YOUR_EC2_PUBLIC_IP
+
+sudo apt update
+sudo apt install -y git nginx curl
+
+curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
+sudo apt install -y nodejs
+sudo npm install -g pm2
+```
+
+### 3. Clone and build the application
+
+Replace `YOUR_REPOSITORY_URL` with the URL of this repository:
+
+```bash
+sudo mkdir -p /var/www
+sudo chown -R ubuntu:ubuntu /var/www
+
+cd /var/www
+git clone YOUR_REPOSITORY_URL apex-live-ticker
+cd apex-live-ticker
+
+npm ci
+npm exec -- nx run-many -t build -p web api --outputStyle=static
+```
+
+The generated production files are:
+
+```text
+apps/web/dist
+apps/api/dist/main.js
+```
+
+### 4. Run the API with PM2
+
+```bash
+pm2 start apps/api/dist/main.js --name apex-api
+pm2 save
+pm2 startup
+```
+
+Run the command printed by `pm2 startup`, then verify the API locally:
+
+```bash
+curl http://127.0.0.1:3333/
+```
+
+### 5. Configure Nginx
+
+Create `/etc/nginx/sites-available/apex-live-ticker`:
+
+```nginx
+server {
+  listen 80;
+  server_name YOUR_DOMAIN_OR_EC2_IP;
+
+  root /var/www/apex-live-ticker/apps/web/dist;
+  index index.html;
+
+  location /api/ {
+    proxy_pass http://127.0.0.1:3333;
+    proxy_http_version 1.1;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+  }
+
+  location / {
+    try_files $uri $uri/ /index.html;
+  }
+}
+```
+
+Enable the site and reload Nginx:
+
+```bash
+sudo ln -s /etc/nginx/sites-available/apex-live-ticker \
+  /etc/nginx/sites-enabled/apex-live-ticker
+sudo rm -f /etc/nginx/sites-enabled/default
+sudo nginx -t
+sudo systemctl reload nginx
+```
+
+Open `http://YOUR_EC2_PUBLIC_IP` in a browser. Once a domain points to the
+instance, use Certbot to add HTTPS.
+
+### Updating the deployment
+
+After pushing changes to the repository:
+
+```bash
+cd /var/www/apex-live-ticker
+git pull
+npm ci
+npm exec -- nx run-many -t build -p web api --outputStyle=static
+pm2 restart apex-api
+sudo systemctl reload nginx
+```
+
+The current frontend does not make API requests yet. When adding them, use
+relative URLs such as `/api/products` so Nginx can route them correctly.
+
 ## ⭐ Featured Nx Capabilities
 
 This repository showcases several powerful Nx features:
