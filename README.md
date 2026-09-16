@@ -13,13 +13,7 @@ This repository demonstrates a production-ready React monorepo with:
 - **2 Applications**
 
   - `web` - React web application
-  - `api` - Backend API serving product data
-
-- **3 Libraries**
-
-  - `@org/models` - Shared data models
-  - `@org/api-products` - API product service library
-  - `@org/shared-test-utils` - Shared testing utilities
+  - `api` - Backend API
 
 ## 🚀 Quick Start
 
@@ -32,10 +26,10 @@ cd <your-repository-name>
 npm install
 
 # Serve the React web application (this will simultaneously serve the API backend)
-npx nx run @org/web:serve
+npx nx run web:serve
 
 # ...or you can serve the API separately
-npx nx run @org/api:serve
+npx nx run api:serve
 
 # Build all projects
 npx nx run-many -t build
@@ -56,127 +50,27 @@ npx nx graph
 
 ## ☁️ Deploy to AWS EC2
 
-The production deployment uses Nginx for the React frontend and PM2 for the
-Express API. The API listens on port `3333` locally, while Nginx serves the
-frontend and proxies `/api` requests to it.
+The production deployment runs as Docker containers: `nginx` (serves the
+React build + reverse-proxies `/api/*` + terminates TLS), `api` (Express,
+builds itself from source on the server), and `certbot` (renews the TLS
+cert). See [`deploy/ec2/README.md`](deploy/ec2/README.md) for full setup
+instructions (one-time server bootstrap, HTTPS via Let's Encrypt,
+troubleshooting).
 
-### 1. Create the EC2 instance
-
-Create an Ubuntu 24.04 LTS instance and configure its security group to allow:
-
-- SSH (`22`) from your IP address only
-- HTTP (`80`) from anywhere
-- HTTPS (`443`) from anywhere
-
-Keep port `3333` closed to the public internet.
-
-### 2. Install the server dependencies
-
-Connect to the instance over SSH:
+Quick reference, once `deploy/ec2/.env` has `EC2_HOST`/`EC2_KEY` set:
 
 ```bash
-ssh -i your-key.pem ubuntu@YOUR_EC2_PUBLIC_IP
-
-sudo apt update
-sudo apt install -y git nginx curl
-
-curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
-sudo apt install -y nodejs
-sudo npm install -g pm2
+npm run deploy:ec2
 ```
 
-### 3. Clone and build the application
-
-Replace `YOUR_REPOSITORY_URL` with the URL of this repository:
+This builds `apps/web/dist` locally, rsyncs what's needed to the server, and
+runs `docker compose up -d --build` there. To test the same stack locally
+without touching EC2, run the compose file directly:
 
 ```bash
-sudo mkdir -p /var/www
-sudo chown -R ubuntu:ubuntu /var/www
-
-cd /var/www
-git clone YOUR_REPOSITORY_URL apex-live-ticker
-cd apex-live-ticker
-
-npm ci
-npm exec -- nx run-many -t build -p web api --outputStyle=static
+npx nx build web
+docker compose -f deploy/ec2/docker-compose.yml up -d --build
 ```
-
-The generated production files are:
-
-```text
-apps/web/dist
-apps/api/dist/main.js
-```
-
-### 4. Run the API with PM2
-
-```bash
-pm2 start apps/api/dist/main.js --name apex-api
-pm2 save
-pm2 startup
-```
-
-Run the command printed by `pm2 startup`, then verify the API locally:
-
-```bash
-curl http://127.0.0.1:3333/
-```
-
-### 5. Configure Nginx
-
-Create `/etc/nginx/sites-available/apex-live-ticker`:
-
-```nginx
-server {
-  listen 80;
-  server_name YOUR_DOMAIN_OR_EC2_IP;
-
-  root /var/www/apex-live-ticker/apps/web/dist;
-  index index.html;
-
-  location /api/ {
-    proxy_pass http://127.0.0.1:3333;
-    proxy_http_version 1.1;
-    proxy_set_header Host $host;
-    proxy_set_header X-Real-IP $remote_addr;
-    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_set_header X-Forwarded-Proto $scheme;
-  }
-
-  location / {
-    try_files $uri $uri/ /index.html;
-  }
-}
-```
-
-Enable the site and reload Nginx:
-
-```bash
-sudo ln -s /etc/nginx/sites-available/apex-live-ticker \
-  /etc/nginx/sites-enabled/apex-live-ticker
-sudo rm -f /etc/nginx/sites-enabled/default
-sudo nginx -t
-sudo systemctl reload nginx
-```
-
-Open `http://YOUR_EC2_PUBLIC_IP` in a browser. Once a domain points to the
-instance, use Certbot to add HTTPS.
-
-### Updating the deployment
-
-After pushing changes to the repository:
-
-```bash
-cd /var/www/apex-live-ticker
-git pull
-npm ci
-npm exec -- nx run-many -t build -p web api --outputStyle=static
-pm2 restart apex-api
-sudo systemctl reload nginx
-```
-
-The current frontend does not make API requests yet. When adding them, use
-relative URLs such as `/api/products` so Nginx can route them correctly.
 
 ## ⭐ Featured Nx Capabilities
 
@@ -186,11 +80,8 @@ This repository showcases several powerful Nx features:
 
 Enforces architectural constraints using tags. Each project has specific dependencies it can use:
 
-- `scope:shared` - Can be used by all projects
-- `scope:api` - API-specific libraries
-- `type:feature` - Feature libraries
-- `type:data` - Data access libraries
-- `type:ui` - UI component libraries
+- `scope:web` - the web app
+- `scope:api` - the API app
 
 **Try it out:**
 
@@ -199,7 +90,7 @@ Enforces architectural constraints using tags. Each project has specific depende
 npx nx graph
 
 # View a specific project's details
-npx nx show project @org/web --web
+npx nx show project web --web
 ```
 
 [Learn more about module boundaries →](https://nx.dev/docs/features/enforce-module-boundaries)
@@ -209,9 +100,6 @@ npx nx show project @org/web --web
 Fast unit testing with Vitest for React libraries:
 
 ```bash
-# Test a specific library
-npx nx run @org/models:test
-
 # Test all projects
 npx nx run-many -t test
 ```
@@ -242,12 +130,6 @@ This feature helps maintain a healthy CI pipeline by automatically detecting and
 ├── apps/
 │   ├── web/            [scope:web]     - React web application
 │   └── api/            [scope:api]     - Backend API
-├── packages/
-│   ├── api/
-│   │   └── products/    [scope:api]    - Product service
-│   └── shared/
-│       ├── models/      [scope:shared,type:data] - Shared models
-│       └── test-utils/  [scope:shared]           - Testing utilities
 ├── nx.json             - Nx configuration
 ├── tsconfig.json       - TypeScript configuration
 └── eslint.config.mjs   - ESLint with module boundary rules
@@ -257,11 +139,10 @@ This feature helps maintain a healthy CI pipeline by automatically detecting and
 
 This repository uses tags to enforce module boundaries:
 
-| Project  | Tags                        | Can Import From             |
-| -------- | --------------------------- | --------------------------- |
-| `web`    | `scope:web`                 | `scope:shared`              |
-| `api`    | `scope:api`                 | `scope:api`, `scope:shared` |
-| `models` | `scope:shared`, `type:data` | Nothing (base library)      |
+| Project | Tags        |
+| ------- | ----------- |
+| `web`   | `scope:web` |
+| `api`   | `scope:api` |
 
 ## 📚 Useful Commands
 
@@ -269,13 +150,12 @@ This repository uses tags to enforce module boundaries:
 # Project exploration
 npx nx graph                                    # Interactive dependency graph
 npx nx list                                     # List installed plugins
-npx nx show project @org/web --web                   # View project details
+npx nx show project web --web                   # View project details
 
 # Development
-npx nx run @org/web:serve                             # Serve React app
-npx nx run @org/api:serve                               # Serve backend API
-npx nx run @org/web:build                              # Build React app
-npx nx run @org/models:test                             # Test a specific library
+npx nx run web:serve                             # Serve React app
+npx nx run api:serve                               # Serve backend API
+npx nx run web:build                              # Build React app
 
 # Running multiple tasks
 npx nx run-many -t build                       # Build all projects

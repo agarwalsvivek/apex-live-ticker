@@ -1,5 +1,5 @@
 {
-  "name": "@org/web",
+  "name": "web",
   "version": "0.0.1",
   "private": true,
   "nx": {
@@ -10,18 +10,18 @@
     "targets": {
       "serve": {
         "dependsOn": [
-          "@org/api:serve"
+          "api:serve"
         ]
       },
       "dev": {
         "dependsOn": [
-          "@org/api:serve"
+          "api:serve"
         ]
       },
       "preview": {
         "dependsOn": [
           "build",
-          "@org/api:serve"
+          "api:serve"
         ]
       }
     }

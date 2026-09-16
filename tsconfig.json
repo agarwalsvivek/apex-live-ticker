@@ -8,15 +8,6 @@
     },
     {
       "path": "./apps/web"
-    },
-    {
-      "path": "./packages/api/products"
-    },
-    {
-      "path": "./packages/shared/models"
-    },
-    {
-      "path": "./packages/shared/test-utils"
     }
   ]
 }

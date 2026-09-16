@@ -1,0 +1,10 @@
+node_modules
+**/node_modules
+dist
+**/dist
+tmp
+out-tsc
+.git
+.nx
+coverage
+**/test-output

@@ -1,8 +1,11 @@
 {
-  "name": "@org/source",
+  "name": "source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "deploy:ec2": "bash -c 'set -a; [ -f deploy/ec2/.env ] && source deploy/ec2/.env; set +a; ./deploy/ec2/build-artifacts.sh && ./deploy/ec2/push-deploy.sh'",
+    "deploy:s3": "bash -c 'set -a; [ -f deploy/s3/.env ] && source deploy/s3/.env; set +a; ./deploy/s3/deploy.sh'"
+  },
   "private": true,
   "dependencies": {
     "express": "^4.21.2",
@@ -15,7 +18,6 @@
     "@babel/preset-react": "^7.14.5",
     "@eslint/js": "^9.8.0",
     "@nx/devkit": "23.2.0",
-    "@nx/docker": "23.2.0",
     "@nx/esbuild": "23.2.0",
     "@nx/eslint": "23.2.0",
     "@nx/eslint-plugin": "23.2.0",
@@ -65,8 +67,6 @@
     "vitest": "~4.1.0"
   },
   "workspaces": [
-    "apps/*",
-    "packages/api/products",
-    "packages/shared/*"
+    "apps/*"
   ]
 }

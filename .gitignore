@@ -52,3 +52,12 @@ test-output
 .nx/polygraph
 .nx/self-healing
 .nx/migrate-runs
+
+# EC2 deploy: local-only config (host/key), local certbot testing state
+# (real certs live only on the server)
+.env
+deploy/ec2/certbot/
+
+# S3 deploy: filled-in bucket policy (contains account id) - keep the
+# tracked file the ${PLACEHOLDER} template
+deploy/s3/bucket-policy.json
