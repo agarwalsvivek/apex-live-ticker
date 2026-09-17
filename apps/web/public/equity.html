@@ -1,317 +1,873 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>EquityStream</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
-<link href="equity.css" rel="stylesheet"/>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EquityStream</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link href="equity.css" rel="stylesheet" />
+  </head>
 
-<!-- ══════════════════════════════════
+  <body>
+    <!-- ══════════════════════════════════
      HEADER TICKER BAR
 ══════════════════════════════════ -->
-<header class="header">
-  <div class="header-market-label">
-    <div class="icon">🌐</div>
-    US Markets ↓
-  </div>
-
-  <div class="header-tickers">
-
-    <div class="header-ticker">
-      <svg class="ht-spark" viewBox="0 0 52 28" fill="none">
-        <polyline points="0,20 8,18 16,14 24,16 32,10 40,12 52,6" stroke="#0a7c3e" stroke-width="1.5" fill="none"/>
-      </svg>
-      <div class="ht-info">
-        <div class="ht-name">Dow Futures</div>
-        <div class="ht-price">52,605.00</div>
-        <div class="ht-chg up">+79.00 +0.15%</div>
+    <header class="header">
+      <div class="header-market-label">
+        <div class="icon">🌐</div>
+        US Markets ↓
       </div>
-    </div>
 
-    <div class="header-ticker">
-      <svg class="ht-spark" viewBox="0 0 52 28" fill="none">
-        <polyline points="0,22 8,18 16,12 24,15 32,9 40,11 52,5" stroke="#0a7c3e" stroke-width="1.5" fill="none"/>
-      </svg>
-      <div class="ht-info">
-        <div class="ht-name">Nasdaq Futures</div>
-        <div class="ht-price">29,374.25</div>
-        <div class="ht-chg up">+127.50 +0.44%</div>
+      <div class="header-tickers">
+        <div class="header-ticker">
+          <svg class="ht-spark" viewBox="0 0 52 28" fill="none">
+            <polyline
+              points="0,20 8,18 16,14 24,16 32,10 40,12 52,6"
+              stroke="#0a7c3e"
+              stroke-width="1.5"
+              fill="none"
+            />
+          </svg>
+          <div class="ht-info">
+            <div class="ht-name">Dow Futures</div>
+            <div class="ht-price">52,605.00</div>
+            <div class="ht-chg up">+79.00 +0.15%</div>
+          </div>
+        </div>
+
+        <div class="header-ticker">
+          <svg class="ht-spark" viewBox="0 0 52 28" fill="none">
+            <polyline
+              points="0,22 8,18 16,12 24,15 32,9 40,11 52,5"
+              stroke="#0a7c3e"
+              stroke-width="1.5"
+              fill="none"
+            />
+          </svg>
+          <div class="ht-info">
+            <div class="ht-name">Nasdaq Futures</div>
+            <div class="ht-price">29,374.25</div>
+            <div class="ht-chg up">+127.50 +0.44%</div>
+          </div>
+        </div>
+
+        <div class="header-ticker">
+          <svg class="ht-spark" viewBox="0 0 52 28" fill="none">
+            <polyline
+              points="0,20 8,16 16,14 24,18 32,12 40,10 52,8"
+              stroke="#0a7c3e"
+              stroke-width="1.5"
+              fill="none"
+            />
+          </svg>
+          <div class="ht-info">
+            <div class="ht-name">Russell 2000 Futures</div>
+            <div class="ht-price">2,899.40</div>
+            <div class="ht-chg up">+4.70 +0.16%</div>
+          </div>
+        </div>
+
+        <div class="header-ticker">
+          <svg class="ht-spark" viewBox="0 0 52 28" fill="none">
+            <polyline
+              points="0,8 8,10 16,14 24,12 32,18 40,20 52,22"
+              stroke="#c0392b"
+              stroke-width="1.5"
+              fill="none"
+            />
+          </svg>
+          <div class="ht-info">
+            <div class="ht-name">VIX</div>
+            <div class="ht-price">16.80</div>
+            <div class="ht-chg down">-0.40 -2.33%</div>
+          </div>
+        </div>
+
+        <div class="header-ticker">
+          <svg class="ht-spark" viewBox="0 0 52 28" fill="none">
+            <polyline
+              points="0,20 8,17 16,14 24,16 32,11 40,8 52,6"
+              stroke="#0a7c3e"
+              stroke-width="1.5"
+              fill="none"
+            />
+          </svg>
+          <div class="ht-info">
+            <div class="ht-name">Gold</div>
+            <div class="ht-price">4,384.90</div>
+            <div class="ht-chg up">+52.10 +1.20%</div>
+          </div>
+        </div>
+
+        <div class="header-ticker">
+          <svg class="ht-spark" viewBox="0 0 52 28" fill="none">
+            <polyline
+              points="0,10 8,14 16,18 24,14 32,20 40,22 52,24"
+              stroke="#c0392b"
+              stroke-width="1.5"
+              fill="none"
+            />
+          </svg>
+          <div class="ht-info">
+            <div class="ht-name">Crude Oil Oct 26</div>
+            <div class="ht-price">103.95</div>
+            <div class="ht-chg down">-1.88 -1.78%</div>
+          </div>
+        </div>
       </div>
-    </div>
 
-    <div class="header-ticker">
-      <svg class="ht-spark" viewBox="0 0 52 28" fill="none">
-        <polyline points="0,20 8,16 16,14 24,18 32,12 40,10 52,8" stroke="#0a7c3e" stroke-width="1.5" fill="none"/>
-      </svg>
-      <div class="ht-info">
-        <div class="ht-name">Russell 2000 Futures</div>
-        <div class="ht-price">2,899.40</div>
-        <div class="ht-chg up">+4.70 +0.16%</div>
+      <div class="header-nav">
+        <button>‹</button>
+        <button>›</button>
       </div>
-    </div>
+    </header>
 
-    <div class="header-ticker">
-      <svg class="ht-spark" viewBox="0 0 52 28" fill="none">
-        <polyline points="0,8 8,10 16,14 24,12 32,18 40,20 52,22" stroke="#c0392b" stroke-width="1.5" fill="none"/>
-      </svg>
-      <div class="ht-info">
-        <div class="ht-name">VIX</div>
-        <div class="ht-price">16.80</div>
-        <div class="ht-chg down">-0.40 -2.33%</div>
-      </div>
-    </div>
-
-    <div class="header-ticker">
-      <svg class="ht-spark" viewBox="0 0 52 28" fill="none">
-        <polyline points="0,20 8,17 16,14 24,16 32,11 40,8 52,6" stroke="#0a7c3e" stroke-width="1.5" fill="none"/>
-      </svg>
-      <div class="ht-info">
-        <div class="ht-name">Gold</div>
-        <div class="ht-price">4,384.90</div>
-        <div class="ht-chg up">+52.10 +1.20%</div>
-      </div>
-    </div>
-
-    <div class="header-ticker">
-      <svg class="ht-spark" viewBox="0 0 52 28" fill="none">
-        <polyline points="0,10 8,14 16,18 24,14 32,20 40,22 52,24" stroke="#c0392b" stroke-width="1.5" fill="none"/>
-      </svg>
-      <div class="ht-info">
-        <div class="ht-name">Crude Oil Oct 26</div>
-        <div class="ht-price">103.95</div>
-        <div class="ht-chg down">-1.88 -1.78%</div>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="header-nav">
-    <button>‹</button>
-    <button>›</button>
-  </div>
-</header>
-
-
-<!-- ══════════════════════════════════
+    <!-- ══════════════════════════════════
      PAGE BODY
 ══════════════════════════════════ -->
-<div class="page">
+    <div class="page">
+      <!-- MAIN COLUMN -->
+      <div class="main-col">
+        <!-- RECENTLY VIEWED -->
+        <div class="section">
+          <div class="section-title">Recently viewed</div>
+          <div class="stock-list">
+            <div class="stock-row">
+              <div class="sr-left">
+                <div class="sr-ticker">ORCL</div>
+                <div class="sr-name">Oracle Corporation</div>
+              </div>
+              <div class="sr-spark">
+                <svg viewBox="0 0 100 36" fill="none">
+                  <path
+                    d="M0,28 Q10,24 20,20 Q30,16 40,22 Q50,28 60,18 Q70,8 80,12 Q90,16 100,10"
+                    stroke="#c0392b"
+                    stroke-width="1.5"
+                    fill="none"
+                  />
+                  <path
+                    d="M0,28 Q10,24 20,20 Q30,16 40,22 Q50,28 60,18 Q70,8 80,12 Q90,16 100,10 L100,36 L0,36Z"
+                    fill="#c0392b"
+                    fill-opacity="0.08"
+                  />
+                </svg>
+              </div>
+              <div class="sr-right">
+                <div class="sr-price">143.37</div>
+                <div class="sr-change up">+3.01 (2.15%)</div>
+              </div>
+            </div>
 
-  <!-- MAIN COLUMN -->
-  <div class="main-col">
+            <div class="stock-row">
+              <div class="sr-left">
+                <div class="sr-ticker">MSFT</div>
+                <div class="sr-name">Microsoft Corporation</div>
+              </div>
+              <div class="sr-spark">
+                <svg viewBox="0 0 100 36" fill="none">
+                  <path
+                    d="M0,10 Q20,8 30,14 Q40,20 50,18 Q60,16 70,22 Q80,28 100,26"
+                    stroke="#c0392b"
+                    stroke-width="1.5"
+                    fill="none"
+                  />
+                  <path
+                    d="M0,10 Q20,8 30,14 Q40,20 50,18 Q60,16 70,22 Q80,28 100,26 L100,36 L0,36Z"
+                    fill="#c0392b"
+                    fill-opacity="0.08"
+                  />
+                </svg>
+              </div>
+              <div class="sr-right">
+                <div class="sr-price">494.19</div>
+                <div class="sr-change down">-2.93 (-0.59%)</div>
+              </div>
+            </div>
 
-    <!-- RECENTLY VIEWED -->
-    <div class="section">
-      <div class="section-title">Recently viewed</div>
-      <div class="stock-list">
+            <div class="stock-row">
+              <div class="sr-left">
+                <div class="sr-ticker">SMCI</div>
+                <div class="sr-name">Super Micro Computer</div>
+              </div>
+              <div class="sr-spark">
+                <svg viewBox="0 0 100 36" fill="none">
+                  <path
+                    d="M0,26 Q20,22 40,18 Q60,14 80,10 Q90,8 100,6"
+                    stroke="#0a7c3e"
+                    stroke-width="1.5"
+                    fill="none"
+                  />
+                  <path
+                    d="M0,26 Q20,22 40,18 Q60,14 80,10 Q90,8 100,6 L100,36 L0,36Z"
+                    fill="#0a7c3e"
+                    fill-opacity="0.08"
+                  />
+                </svg>
+              </div>
+              <div class="sr-right">
+                <div class="sr-price">36.62</div>
+                <div class="sr-change up">+0.98 (+2.75%)</div>
+              </div>
+            </div>
 
-        <div class="stock-row">
-          <div class="sr-left"><div class="sr-ticker">ORCL</div><div class="sr-name">Oracle Corporation</div></div>
-          <div class="sr-spark"><svg viewBox="0 0 100 36" fill="none"><path d="M0,28 Q10,24 20,20 Q30,16 40,22 Q50,28 60,18 Q70,8 80,12 Q90,16 100,10" stroke="#c0392b" stroke-width="1.5" fill="none"/><path d="M0,28 Q10,24 20,20 Q30,16 40,22 Q50,28 60,18 Q70,8 80,12 Q90,16 100,10 L100,36 L0,36Z" fill="#c0392b" fill-opacity="0.08"/></svg></div>
-          <div class="sr-right"><div class="sr-price">143.37</div><div class="sr-change up">+3.01 (2.15%)</div></div>
+            <div class="stock-row">
+              <div class="sr-left">
+                <div class="sr-ticker">VRT</div>
+                <div class="sr-name">Vertiv Holdings Co</div>
+              </div>
+              <div class="sr-spark">
+                <svg viewBox="0 0 100 36" fill="none">
+                  <path
+                    d="M0,22 Q20,18 40,14 Q60,10 80,8 Q90,6 100,4"
+                    stroke="#0a7c3e"
+                    stroke-width="1.5"
+                    fill="none"
+                  />
+                  <path
+                    d="M0,22 Q20,18 40,14 Q60,10 80,8 Q90,6 100,4 L100,36 L0,36Z"
+                    fill="#0a7c3e"
+                    fill-opacity="0.08"
+                  />
+                </svg>
+              </div>
+              <div class="sr-right">
+                <div class="sr-price">242.21</div>
+                <div class="sr-change up">+7.60 (+3.24%)</div>
+              </div>
+            </div>
+
+            <div class="stock-row">
+              <div class="sr-left">
+                <div class="sr-ticker">AMD</div>
+                <div class="sr-name">Advanced Micro Devices</div>
+              </div>
+              <div class="sr-spark">
+                <svg viewBox="0 0 100 36" fill="none">
+                  <path
+                    d="M0,24 Q20,20 40,16 Q60,12 75,8 Q90,6 100,4"
+                    stroke="#0a7c3e"
+                    stroke-width="1.5"
+                    fill="none"
+                  />
+                  <path
+                    d="M0,24 Q20,20 40,16 Q60,12 75,8 Q90,6 100,4 L100,36 L0,36Z"
+                    fill="#0a7c3e"
+                    fill-opacity="0.08"
+                  />
+                </svg>
+              </div>
+              <div class="sr-right">
+                <div class="sr-price">522.96</div>
+                <div class="sr-change up">+18.76 (+3.72%)</div>
+              </div>
+            </div>
+
+            <div class="stock-row">
+              <div class="sr-left">
+                <div class="sr-ticker">JPM</div>
+                <div class="sr-name">JPMorgan Chase &amp; Co</div>
+              </div>
+              <div class="sr-spark">
+                <svg viewBox="0 0 100 36" fill="none">
+                  <path
+                    d="M0,16 Q20,14 40,18 Q60,22 80,20 Q90,18 100,22"
+                    stroke="#c0392b"
+                    stroke-width="1.5"
+                    fill="none"
+                  />
+                  <path
+                    d="M0,16 Q20,14 40,18 Q60,22 80,20 Q90,18 100,22 L100,36 L0,36Z"
+                    fill="#c0392b"
+                    fill-opacity="0.08"
+                  />
+                </svg>
+              </div>
+              <div class="sr-right">
+                <div class="sr-price">351.67</div>
+                <div class="sr-change down">-0.82 (-0.23%)</div>
+              </div>
+            </div>
+
+            <div class="stock-row">
+              <div class="sr-left">
+                <div class="sr-ticker">COST</div>
+                <div class="sr-name">Costco Wholesale</div>
+              </div>
+              <div class="sr-spark">
+                <svg viewBox="0 0 100 36" fill="none">
+                  <path
+                    d="M0,14 Q20,16 40,20 Q60,24 80,26 Q90,28 100,30"
+                    stroke="#c0392b"
+                    stroke-width="1.5"
+                    fill="none"
+                  />
+                  <path
+                    d="M0,14 Q20,16 40,20 Q60,24 80,26 Q90,28 100,30 L100,36 L0,36Z"
+                    fill="#c0392b"
+                    fill-opacity="0.08"
+                  />
+                </svg>
+              </div>
+              <div class="sr-right">
+                <div class="sr-price">899.29</div>
+                <div class="sr-change down">-2.06 (-0.23%)</div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="stock-row">
-          <div class="sr-left"><div class="sr-ticker">MSFT</div><div class="sr-name">Microsoft Corporation</div></div>
-          <div class="sr-spark"><svg viewBox="0 0 100 36" fill="none"><path d="M0,10 Q20,8 30,14 Q40,20 50,18 Q60,16 70,22 Q80,28 100,26" stroke="#c0392b" stroke-width="1.5" fill="none"/><path d="M0,10 Q20,8 30,14 Q40,20 50,18 Q60,16 70,22 Q80,28 100,26 L100,36 L0,36Z" fill="#c0392b" fill-opacity="0.08"/></svg></div>
-          <div class="sr-right"><div class="sr-price">494.19</div><div class="sr-change down">-2.93 (-0.59%)</div></div>
-        </div>
+        <!-- TOP GAINERS -->
+        <div class="section">
+          <div class="section-title">Top gainers</div>
+          <div class="stock-list">
+            <div class="stock-row">
+              <div class="sr-left">
+                <div class="sr-ticker">SWKS</div>
+                <div class="sr-name">Skyworks Solutions</div>
+              </div>
+              <div class="sr-spark">
+                <svg viewBox="0 0 100 36" fill="none">
+                  <path
+                    d="M0,28 Q20,22 40,16 Q60,10 80,6 Q90,4 100,2"
+                    stroke="#0a7c3e"
+                    stroke-width="1.5"
+                    fill="none"
+                  />
+                  <path
+                    d="M0,28 Q20,22 40,16 Q60,10 80,6 Q90,4 100,2 L100,36 L0,36Z"
+                    fill="#0a7c3e"
+                    fill-opacity="0.08"
+                  />
+                </svg>
+              </div>
+              <div class="sr-right">
+                <div class="sr-price">87.10</div>
+                <div class="sr-change up">+8.10 (+10.28%)</div>
+              </div>
+            </div>
 
-        <div class="stock-row">
-          <div class="sr-left"><div class="sr-ticker">SMCI</div><div class="sr-name">Super Micro Computer</div></div>
-          <div class="sr-spark"><svg viewBox="0 0 100 36" fill="none"><path d="M0,26 Q20,22 40,18 Q60,14 80,10 Q90,8 100,6" stroke="#0a7c3e" stroke-width="1.5" fill="none"/><path d="M0,26 Q20,22 40,18 Q60,14 80,10 Q90,8 100,6 L100,36 L0,36Z" fill="#0a7c3e" fill-opacity="0.08"/></svg></div>
-          <div class="sr-right"><div class="sr-price">36.62</div><div class="sr-change up">+0.98 (+2.75%)</div></div>
-        </div>
+            <div class="stock-row">
+              <div class="sr-left">
+                <div class="sr-ticker">TEM</div>
+                <div class="sr-name">Tempus AI, Inc.</div>
+              </div>
+              <div class="sr-spark">
+                <svg viewBox="0 0 100 36" fill="none">
+                  <path
+                    d="M0,26 Q20,20 40,14 Q60,10 80,6 Q90,4 100,3"
+                    stroke="#0a7c3e"
+                    stroke-width="1.5"
+                    fill="none"
+                  />
+                  <path
+                    d="M0,26 Q20,20 40,14 Q60,10 80,6 Q90,4 100,3 L100,36 L0,36Z"
+                    fill="#0a7c3e"
+                    fill-opacity="0.08"
+                  />
+                </svg>
+              </div>
+              <div class="sr-right">
+                <div class="sr-price">69.43</div>
+                <div class="sr-change up">+0.58 (+0.84%)</div>
+              </div>
+            </div>
 
-        <div class="stock-row">
-          <div class="sr-left"><div class="sr-ticker">VRT</div><div class="sr-name">Vertiv Holdings Co</div></div>
-          <div class="sr-spark"><svg viewBox="0 0 100 36" fill="none"><path d="M0,22 Q20,18 40,14 Q60,10 80,8 Q90,6 100,4" stroke="#0a7c3e" stroke-width="1.5" fill="none"/><path d="M0,22 Q20,18 40,14 Q60,10 80,8 Q90,6 100,4 L100,36 L0,36Z" fill="#0a7c3e" fill-opacity="0.08"/></svg></div>
-          <div class="sr-right"><div class="sr-price">242.21</div><div class="sr-change up">+7.60 (+3.24%)</div></div>
-        </div>
+            <div class="stock-row">
+              <div class="sr-left">
+                <div class="sr-ticker">FPS</div>
+                <div class="sr-name">Forgent Power Sol.</div>
+              </div>
+              <div class="sr-spark">
+                <svg viewBox="0 0 100 36" fill="none">
+                  <path
+                    d="M0,30 Q20,24 40,16 Q60,8 80,4 Q90,2 100,1"
+                    stroke="#0a7c3e"
+                    stroke-width="1.5"
+                    fill="none"
+                  />
+                  <path
+                    d="M0,30 Q20,24 40,16 Q60,8 80,4 Q90,2 100,1 L100,36 L0,36Z"
+                    fill="#0a7c3e"
+                    fill-opacity="0.08"
+                  />
+                </svg>
+              </div>
+              <div class="sr-right">
+                <div class="sr-price">34.84</div>
+                <div class="sr-change up">+3.48 (+11.10%)</div>
+              </div>
+            </div>
 
-        <div class="stock-row">
-          <div class="sr-left"><div class="sr-ticker">AMD</div><div class="sr-name">Advanced Micro Devices</div></div>
-          <div class="sr-spark"><svg viewBox="0 0 100 36" fill="none"><path d="M0,24 Q20,20 40,16 Q60,12 75,8 Q90,6 100,4" stroke="#0a7c3e" stroke-width="1.5" fill="none"/><path d="M0,24 Q20,20 40,16 Q60,12 75,8 Q90,6 100,4 L100,36 L0,36Z" fill="#0a7c3e" fill-opacity="0.08"/></svg></div>
-          <div class="sr-right"><div class="sr-price">522.96</div><div class="sr-change up">+18.76 (+3.72%)</div></div>
-        </div>
+            <div class="stock-row">
+              <div class="sr-left">
+                <div class="sr-ticker">CAI</div>
+                <div class="sr-name">Caris Life Sciences</div>
+              </div>
+              <div class="sr-spark">
+                <svg viewBox="0 0 100 36" fill="none">
+                  <path
+                    d="M0,24 Q20,20 40,16 Q60,12 80,8 Q90,6 100,4"
+                    stroke="#0a7c3e"
+                    stroke-width="1.5"
+                    fill="none"
+                  />
+                  <path
+                    d="M0,24 Q20,20 40,16 Q60,12 80,8 Q90,6 100,4 L100,36 L0,36Z"
+                    fill="#0a7c3e"
+                    fill-opacity="0.08"
+                  />
+                </svg>
+              </div>
+              <div class="sr-right">
+                <div class="sr-price">28.24</div>
+                <div class="sr-change up">+2.24 (+8.61%)</div>
+              </div>
+            </div>
 
-        <div class="stock-row">
-          <div class="sr-left"><div class="sr-ticker">JPM</div><div class="sr-name">JPMorgan Chase &amp; Co</div></div>
-          <div class="sr-spark"><svg viewBox="0 0 100 36" fill="none"><path d="M0,16 Q20,14 40,18 Q60,22 80,20 Q90,18 100,22" stroke="#c0392b" stroke-width="1.5" fill="none"/><path d="M0,16 Q20,14 40,18 Q60,22 80,20 Q90,18 100,22 L100,36 L0,36Z" fill="#c0392b" fill-opacity="0.08"/></svg></div>
-          <div class="sr-right"><div class="sr-price">351.67</div><div class="sr-change down">-0.82 (-0.23%)</div></div>
+            <div class="stock-row">
+              <div class="sr-left">
+                <div class="sr-ticker">QRVO</div>
+                <div class="sr-name">Qorvo, Inc.</div>
+              </div>
+              <div class="sr-spark">
+                <svg viewBox="0 0 100 36" fill="none">
+                  <path
+                    d="M0,26 Q20,20 40,14 Q60,10 80,6 Q90,4 100,2"
+                    stroke="#0a7c3e"
+                    stroke-width="1.5"
+                    fill="none"
+                  />
+                  <path
+                    d="M0,26 Q20,20 40,14 Q60,10 80,6 Q90,4 100,2 L100,36 L0,36Z"
+                    fill="#0a7c3e"
+                    fill-opacity="0.08"
+                  />
+                </svg>
+              </div>
+              <div class="sr-right">
+                <div class="sr-price">115.56</div>
+                <div class="sr-change up">+9.56 (+9.01%)</div>
+              </div>
+            </div>
+          </div>
         </div>
-
-        <div class="stock-row">
-          <div class="sr-left"><div class="sr-ticker">COST</div><div class="sr-name">Costco Wholesale</div></div>
-          <div class="sr-spark"><svg viewBox="0 0 100 36" fill="none"><path d="M0,14 Q20,16 40,20 Q60,24 80,26 Q90,28 100,30" stroke="#c0392b" stroke-width="1.5" fill="none"/><path d="M0,14 Q20,16 40,20 Q60,24 80,26 Q90,28 100,30 L100,36 L0,36Z" fill="#c0392b" fill-opacity="0.08"/></svg></div>
-          <div class="sr-right"><div class="sr-price">899.29</div><div class="sr-change down">-2.06 (-0.23%)</div></div>
-        </div>
-
       </div>
-    </div>
 
-    <!-- TOP GAINERS -->
-    <div class="section">
-      <div class="section-title">Top gainers</div>
-      <div class="stock-list">
+      <!-- SIDEBAR COLUMN -->
+      <div class="side-col">
+        <!-- TRENDING TICKERS -->
+        <div class="section">
+          <div class="section-title">Trending tickers</div>
+          <div class="stock-list">
+            <div class="stock-row">
+              <div class="sr-left">
+                <div class="sr-ticker">MEDS</div>
+                <div class="sr-name">DataMEDS AI, Inc.</div>
+              </div>
+              <div class="sr-spark">
+                <svg viewBox="0 0 100 36" fill="none">
+                  <path
+                    d="M0,30 Q20,24 40,16 Q60,8 80,4 Q90,2 100,1"
+                    stroke="#0a7c3e"
+                    stroke-width="1.5"
+                    fill="none"
+                  />
+                  <path
+                    d="M0,30 Q20,24 40,16 Q60,8 80,4 Q90,2 100,1 L100,36 L0,36Z"
+                    fill="#0a7c3e"
+                    fill-opacity="0.08"
+                  />
+                </svg>
+              </div>
+              <div class="sr-right">
+                <div class="sr-price">10.60</div>
+                <div class="sr-change up">+8.99 (+554.21%)</div>
+              </div>
+            </div>
 
-        <div class="stock-row">
-          <div class="sr-left"><div class="sr-ticker">SWKS</div><div class="sr-name">Skyworks Solutions</div></div>
-          <div class="sr-spark"><svg viewBox="0 0 100 36" fill="none"><path d="M0,28 Q20,22 40,16 Q60,10 80,6 Q90,4 100,2" stroke="#0a7c3e" stroke-width="1.5" fill="none"/><path d="M0,28 Q20,22 40,16 Q60,10 80,6 Q90,4 100,2 L100,36 L0,36Z" fill="#0a7c3e" fill-opacity="0.08"/></svg></div>
-          <div class="sr-right"><div class="sr-price">87.10</div><div class="sr-change up">+8.10 (+10.28%)</div></div>
+            <div class="stock-row">
+              <div class="sr-left">
+                <div class="sr-ticker">RETO</div>
+                <div class="sr-name">ReTo Eco-Solutions</div>
+              </div>
+              <div class="sr-spark">
+                <svg viewBox="0 0 100 36" fill="none">
+                  <path
+                    d="M0,28 Q20,22 40,14 Q60,8 80,4 Q90,2 100,1"
+                    stroke="#0a7c3e"
+                    stroke-width="1.5"
+                    fill="none"
+                  />
+                  <path
+                    d="M0,28 Q20,22 40,14 Q60,8 80,4 Q90,2 100,1 L100,36 L0,36Z"
+                    fill="#0a7c3e"
+                    fill-opacity="0.08"
+                  />
+                </svg>
+              </div>
+              <div class="sr-right">
+                <div class="sr-price">15.15</div>
+                <div class="sr-change up">+12.35 (+441.25%)</div>
+              </div>
+            </div>
+
+            <div class="stock-row">
+              <div class="sr-left">
+                <div class="sr-ticker">INTC</div>
+                <div class="sr-name">Intel Corporation</div>
+              </div>
+              <div class="sr-spark">
+                <svg viewBox="0 0 100 36" fill="none">
+                  <path
+                    d="M0,22 Q20,18 40,14 Q55,10 65,16 Q80,24 100,20"
+                    stroke="#c0392b"
+                    stroke-width="1.5"
+                    fill="none"
+                  />
+                  <path
+                    d="M0,22 Q20,18 40,14 Q55,10 65,16 Q80,24 100,20 L100,36 L0,36Z"
+                    fill="#c0392b"
+                    fill-opacity="0.08"
+                  />
+                </svg>
+              </div>
+              <div class="sr-right">
+                <div class="sr-price">101.40</div>
+                <div class="sr-change up">+4.26 (+4.39%)</div>
+              </div>
+            </div>
+
+            <div class="stock-row">
+              <div class="sr-left">
+                <div class="sr-ticker">CAVA</div>
+                <div class="sr-name">CAVA Group, Inc.</div>
+              </div>
+              <div class="sr-spark">
+                <svg viewBox="0 0 100 36" fill="none">
+                  <path
+                    d="M0,24 Q20,20 40,16 Q60,12 80,8 Q90,6 100,4"
+                    stroke="#0a7c3e"
+                    stroke-width="1.5"
+                    fill="none"
+                  />
+                  <path
+                    d="M0,24 Q20,20 40,16 Q60,12 80,8 Q90,6 100,4 L100,36 L0,36Z"
+                    fill="#0a7c3e"
+                    fill-opacity="0.08"
+                  />
+                </svg>
+              </div>
+              <div class="sr-right">
+                <div class="sr-price">51.43</div>
+                <div class="sr-change up">+1.44 (+2.88%)</div>
+              </div>
+            </div>
+
+            <div class="stock-row">
+              <div class="sr-left">
+                <div class="sr-ticker">SWKS</div>
+                <div class="sr-name">Skyworks Solutions</div>
+              </div>
+              <div class="sr-spark">
+                <svg viewBox="0 0 100 36" fill="none">
+                  <path
+                    d="M0,10 Q20,14 40,18 Q60,22 80,26 Q90,28 100,30"
+                    stroke="#c0392b"
+                    stroke-width="1.5"
+                    fill="none"
+                  />
+                  <path
+                    d="M0,10 Q20,14 40,18 Q60,22 80,26 Q90,28 100,30 L100,36 L0,36Z"
+                    fill="#c0392b"
+                    fill-opacity="0.08"
+                  />
+                </svg>
+              </div>
+              <div class="sr-right">
+                <div class="sr-price">87.00</div>
+                <div class="sr-change down">-3.00 (-3.33%)</div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="stock-row">
-          <div class="sr-left"><div class="sr-ticker">TEM</div><div class="sr-name">Tempus AI, Inc.</div></div>
-          <div class="sr-spark"><svg viewBox="0 0 100 36" fill="none"><path d="M0,26 Q20,20 40,14 Q60,10 80,6 Q90,4 100,3" stroke="#0a7c3e" stroke-width="1.5" fill="none"/><path d="M0,26 Q20,20 40,14 Q60,10 80,6 Q90,4 100,3 L100,36 L0,36Z" fill="#0a7c3e" fill-opacity="0.08"/></svg></div>
-          <div class="sr-right"><div class="sr-price">69.43</div><div class="sr-change up">+0.58 (+0.84%)</div></div>
+        <!-- TOP LOSERS -->
+        <div class="section">
+          <div class="section-title">Top losers</div>
+          <div class="stock-list">
+            <div class="stock-row">
+              <div class="sr-left">
+                <div class="sr-ticker">ENVA</div>
+                <div class="sr-name">Enova International</div>
+              </div>
+              <div class="sr-spark">
+                <svg viewBox="0 0 100 36" fill="none">
+                  <path
+                    d="M0,8 Q20,12 40,18 Q60,24 80,28 Q90,30 100,32"
+                    stroke="#c0392b"
+                    stroke-width="1.5"
+                    fill="none"
+                  />
+                  <path
+                    d="M0,8 Q20,12 40,18 Q60,24 80,28 Q90,30 100,32 L100,36 L0,36Z"
+                    fill="#c0392b"
+                    fill-opacity="0.08"
+                  />
+                </svg>
+              </div>
+              <div class="sr-right">
+                <div class="sr-price">173.98</div>
+                <div class="sr-change down">-18.20 (-9.48%)</div>
+              </div>
+            </div>
+
+            <div class="stock-row">
+              <div class="sr-left">
+                <div class="sr-ticker">ALHC</div>
+                <div class="sr-name">Alignment Health</div>
+              </div>
+              <div class="sr-spark">
+                <svg viewBox="0 0 100 36" fill="none">
+                  <path
+                    d="M0,6 Q20,10 40,16 Q60,22 80,28 Q90,30 100,33"
+                    stroke="#c0392b"
+                    stroke-width="1.5"
+                    fill="none"
+                  />
+                  <path
+                    d="M0,6 Q20,10 40,16 Q60,22 80,28 Q90,30 100,33 L100,36 L0,36Z"
+                    fill="#c0392b"
+                    fill-opacity="0.08"
+                  />
+                </svg>
+              </div>
+              <div class="sr-right">
+                <div class="sr-price">9.42</div>
+                <div class="sr-change down">-0.95 (-9.16%)</div>
+              </div>
+            </div>
+
+            <div class="stock-row">
+              <div class="sr-left">
+                <div class="sr-ticker">ARWR</div>
+                <div class="sr-name">Arrowhead Pharma</div>
+              </div>
+              <div class="sr-spark">
+                <svg viewBox="0 0 100 36" fill="none">
+                  <path
+                    d="M0,8 Q20,12 40,20 Q60,26 80,30 Q90,32 100,34"
+                    stroke="#c0392b"
+                    stroke-width="1.5"
+                    fill="none"
+                  />
+                  <path
+                    d="M0,8 Q20,12 40,20 Q60,26 80,30 Q90,32 100,34 L100,36 L0,36Z"
+                    fill="#c0392b"
+                    fill-opacity="0.08"
+                  />
+                </svg>
+              </div>
+              <div class="sr-right">
+                <div class="sr-price">67.28</div>
+                <div class="sr-change down">-3.39 (-4.80%)</div>
+              </div>
+            </div>
+
+            <div class="stock-row">
+              <div class="sr-left">
+                <div class="sr-ticker">WING</div>
+                <div class="sr-name">Wingstop Inc.</div>
+              </div>
+              <div class="sr-spark">
+                <svg viewBox="0 0 100 36" fill="none">
+                  <path
+                    d="M0,10 Q20,14 40,18 Q60,24 80,28 Q90,30 100,32"
+                    stroke="#c0392b"
+                    stroke-width="1.5"
+                    fill="none"
+                  />
+                  <path
+                    d="M0,10 Q20,14 40,18 Q60,24 80,28 Q90,30 100,32 L100,36 L0,36Z"
+                    fill="#c0392b"
+                    fill-opacity="0.08"
+                  />
+                </svg>
+              </div>
+              <div class="sr-right">
+                <div class="sr-price">103.53</div>
+                <div class="sr-change down">-8.20 (-7.34%)</div>
+              </div>
+            </div>
+
+            <div class="stock-row">
+              <div class="sr-left">
+                <div class="sr-ticker">CRCL</div>
+                <div class="sr-name">Circle Internet Gr.</div>
+              </div>
+              <div class="sr-spark">
+                <svg viewBox="0 0 100 36" fill="none">
+                  <path
+                    d="M0,6 Q20,10 40,18 Q60,26 80,30 Q90,32 100,34"
+                    stroke="#c0392b"
+                    stroke-width="1.5"
+                    fill="none"
+                  />
+                  <path
+                    d="M0,6 Q20,10 40,18 Q60,26 80,30 Q90,32 100,34 L100,36 L0,36Z"
+                    fill="#c0392b"
+                    fill-opacity="0.08"
+                  />
+                </svg>
+              </div>
+              <div class="sr-right">
+                <div class="sr-price">80.94</div>
+                <div class="sr-change down">-5.36 (-6.21%)</div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="stock-row">
-          <div class="sr-left"><div class="sr-ticker">FPS</div><div class="sr-name">Forgent Power Sol.</div></div>
-          <div class="sr-spark"><svg viewBox="0 0 100 36" fill="none"><path d="M0,30 Q20,24 40,16 Q60,8 80,4 Q90,2 100,1" stroke="#0a7c3e" stroke-width="1.5" fill="none"/><path d="M0,30 Q20,24 40,16 Q60,8 80,4 Q90,2 100,1 L100,36 L0,36Z" fill="#0a7c3e" fill-opacity="0.08"/></svg></div>
-          <div class="sr-right"><div class="sr-price">34.84</div><div class="sr-change up">+3.48 (+11.10%)</div></div>
-        </div>
+        <!-- MOST ACTIVE -->
+        <div class="section">
+          <div class="section-title">Most active</div>
+          <div class="stock-list">
+            <div class="stock-row">
+              <div class="sr-left">
+                <div class="sr-ticker">NOK</div>
+                <div class="sr-name">Nokia Oyj</div>
+              </div>
+              <div class="sr-spark">
+                <svg viewBox="0 0 100 36" fill="none">
+                  <path
+                    d="M0,24 Q20,20 40,16 Q60,12 80,8 Q90,6 100,4"
+                    stroke="#0a7c3e"
+                    stroke-width="1.5"
+                    fill="none"
+                  />
+                  <path
+                    d="M0,24 Q20,20 40,16 Q60,12 80,8 Q90,6 100,4 L100,36 L0,36Z"
+                    fill="#0a7c3e"
+                    fill-opacity="0.08"
+                  />
+                </svg>
+              </div>
+              <div class="sr-right">
+                <div class="sr-price">10.14</div>
+                <div class="sr-change up">+0.30 (+3.00%)</div>
+              </div>
+            </div>
 
-        <div class="stock-row">
-          <div class="sr-left"><div class="sr-ticker">CAI</div><div class="sr-name">Caris Life Sciences</div></div>
-          <div class="sr-spark"><svg viewBox="0 0 100 36" fill="none"><path d="M0,24 Q20,20 40,16 Q60,12 80,8 Q90,6 100,4" stroke="#0a7c3e" stroke-width="1.5" fill="none"/><path d="M0,24 Q20,20 40,16 Q60,12 80,8 Q90,6 100,4 L100,36 L0,36Z" fill="#0a7c3e" fill-opacity="0.08"/></svg></div>
-          <div class="sr-right"><div class="sr-price">28.24</div><div class="sr-change up">+2.24 (+8.61%)</div></div>
-        </div>
+            <div class="stock-row">
+              <div class="sr-left">
+                <div class="sr-ticker">AAL</div>
+                <div class="sr-name">American Airlines</div>
+              </div>
+              <div class="sr-spark">
+                <svg viewBox="0 0 100 36" fill="none">
+                  <path
+                    d="M0,22 Q20,18 40,14 Q60,10 80,8 Q90,6 100,5"
+                    stroke="#0a7c3e"
+                    stroke-width="1.5"
+                    fill="none"
+                  />
+                  <path
+                    d="M0,22 Q20,18 40,14 Q60,10 80,8 Q90,6 100,5 L100,36 L0,36Z"
+                    fill="#0a7c3e"
+                    fill-opacity="0.08"
+                  />
+                </svg>
+              </div>
+              <div class="sr-right">
+                <div class="sr-price">13.13</div>
+                <div class="sr-change up">+0.35 (+2.78%)</div>
+              </div>
+            </div>
 
-        <div class="stock-row">
-          <div class="sr-left"><div class="sr-ticker">QRVO</div><div class="sr-name">Qorvo, Inc.</div></div>
-          <div class="sr-spark"><svg viewBox="0 0 100 36" fill="none"><path d="M0,26 Q20,20 40,14 Q60,10 80,6 Q90,4 100,2" stroke="#0a7c3e" stroke-width="1.5" fill="none"/><path d="M0,26 Q20,20 40,14 Q60,10 80,6 Q90,4 100,2 L100,36 L0,36Z" fill="#0a7c3e" fill-opacity="0.08"/></svg></div>
-          <div class="sr-right"><div class="sr-price">115.56</div><div class="sr-change up">+9.56 (+9.01%)</div></div>
-        </div>
+            <div class="stock-row">
+              <div class="sr-left">
+                <div class="sr-ticker">INTC</div>
+                <div class="sr-name">Intel Corporation</div>
+              </div>
+              <div class="sr-spark">
+                <svg viewBox="0 0 100 36" fill="none">
+                  <path
+                    d="M0,20 Q20,16 35,12 Q50,8 60,14 Q75,22 90,18 Q95,16 100,20"
+                    stroke="#c0392b"
+                    stroke-width="1.5"
+                    fill="none"
+                  />
+                  <path
+                    d="M0,20 Q20,16 35,12 Q50,8 60,14 Q75,22 90,18 Q95,16 100,20 L100,36 L0,36Z"
+                    fill="#c0392b"
+                    fill-opacity="0.08"
+                  />
+                </svg>
+              </div>
+              <div class="sr-right">
+                <div class="sr-price">101.40</div>
+                <div class="sr-change up">+4.26 (+4.38%)</div>
+              </div>
+            </div>
 
+            <div class="stock-row">
+              <div class="sr-left">
+                <div class="sr-ticker">GRAB</div>
+                <div class="sr-name">Grab Holdings Ltd.</div>
+              </div>
+              <div class="sr-spark">
+                <svg viewBox="0 0 100 36" fill="none">
+                  <path
+                    d="M0,26 Q20,22 40,18 Q60,14 80,10 Q90,8 100,6"
+                    stroke="#0a7c3e"
+                    stroke-width="1.5"
+                    fill="none"
+                  />
+                  <path
+                    d="M0,26 Q20,22 40,18 Q60,14 80,10 Q90,8 100,6 L100,36 L0,36Z"
+                    fill="#0a7c3e"
+                    fill-opacity="0.08"
+                  />
+                </svg>
+              </div>
+              <div class="sr-right">
+                <div class="sr-price">2.9600</div>
+                <div class="sr-change up">+0.05 (+1.72%)</div>
+              </div>
+            </div>
+
+            <div class="stock-row">
+              <div class="sr-left">
+                <div class="sr-ticker">PATH</div>
+                <div class="sr-name">UiPath, Inc.</div>
+              </div>
+              <div class="sr-spark">
+                <svg viewBox="0 0 100 36" fill="none">
+                  <path
+                    d="M0,12 Q20,14 40,18 Q60,22 80,26 Q90,28 100,30"
+                    stroke="#c0392b"
+                    stroke-width="1.5"
+                    fill="none"
+                  />
+                  <path
+                    d="M0,12 Q20,14 40,18 Q60,22 80,26 Q90,28 100,30 L100,36 L0,36Z"
+                    fill="#c0392b"
+                    fill-opacity="0.08"
+                  />
+                </svg>
+              </div>
+              <div class="sr-right">
+                <div class="sr-price">13.89</div>
+                <div class="sr-change down">-0.34 (-2.42%)</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+      <!-- /side-col -->
     </div>
-
-  </div>
-
-  <!-- SIDEBAR COLUMN -->
-  <div class="side-col">
-
-    <!-- TRENDING TICKERS -->
-    <div class="section">
-      <div class="section-title">Trending tickers</div>
-      <div class="stock-list">
-
-        <div class="stock-row">
-          <div class="sr-left"><div class="sr-ticker">MEDS</div><div class="sr-name">DataMEDS AI, Inc.</div></div>
-          <div class="sr-spark"><svg viewBox="0 0 100 36" fill="none"><path d="M0,30 Q20,24 40,16 Q60,8 80,4 Q90,2 100,1" stroke="#0a7c3e" stroke-width="1.5" fill="none"/><path d="M0,30 Q20,24 40,16 Q60,8 80,4 Q90,2 100,1 L100,36 L0,36Z" fill="#0a7c3e" fill-opacity="0.08"/></svg></div>
-          <div class="sr-right"><div class="sr-price">10.60</div><div class="sr-change up">+8.99 (+554.21%)</div></div>
-        </div>
-
-        <div class="stock-row">
-          <div class="sr-left"><div class="sr-ticker">RETO</div><div class="sr-name">ReTo Eco-Solutions</div></div>
-          <div class="sr-spark"><svg viewBox="0 0 100 36" fill="none"><path d="M0,28 Q20,22 40,14 Q60,8 80,4 Q90,2 100,1" stroke="#0a7c3e" stroke-width="1.5" fill="none"/><path d="M0,28 Q20,22 40,14 Q60,8 80,4 Q90,2 100,1 L100,36 L0,36Z" fill="#0a7c3e" fill-opacity="0.08"/></svg></div>
-          <div class="sr-right"><div class="sr-price">15.15</div><div class="sr-change up">+12.35 (+441.25%)</div></div>
-        </div>
-
-        <div class="stock-row">
-          <div class="sr-left"><div class="sr-ticker">INTC</div><div class="sr-name">Intel Corporation</div></div>
-          <div class="sr-spark"><svg viewBox="0 0 100 36" fill="none"><path d="M0,22 Q20,18 40,14 Q55,10 65,16 Q80,24 100,20" stroke="#c0392b" stroke-width="1.5" fill="none"/><path d="M0,22 Q20,18 40,14 Q55,10 65,16 Q80,24 100,20 L100,36 L0,36Z" fill="#c0392b" fill-opacity="0.08"/></svg></div>
-          <div class="sr-right"><div class="sr-price">101.40</div><div class="sr-change up">+4.26 (+4.39%)</div></div>
-        </div>
-
-        <div class="stock-row">
-          <div class="sr-left"><div class="sr-ticker">CAVA</div><div class="sr-name">CAVA Group, Inc.</div></div>
-          <div class="sr-spark"><svg viewBox="0 0 100 36" fill="none"><path d="M0,24 Q20,20 40,16 Q60,12 80,8 Q90,6 100,4" stroke="#0a7c3e" stroke-width="1.5" fill="none"/><path d="M0,24 Q20,20 40,16 Q60,12 80,8 Q90,6 100,4 L100,36 L0,36Z" fill="#0a7c3e" fill-opacity="0.08"/></svg></div>
-          <div class="sr-right"><div class="sr-price">51.43</div><div class="sr-change up">+1.44 (+2.88%)</div></div>
-        </div>
-
-        <div class="stock-row">
-          <div class="sr-left"><div class="sr-ticker">SWKS</div><div class="sr-name">Skyworks Solutions</div></div>
-          <div class="sr-spark"><svg viewBox="0 0 100 36" fill="none"><path d="M0,10 Q20,14 40,18 Q60,22 80,26 Q90,28 100,30" stroke="#c0392b" stroke-width="1.5" fill="none"/><path d="M0,10 Q20,14 40,18 Q60,22 80,26 Q90,28 100,30 L100,36 L0,36Z" fill="#c0392b" fill-opacity="0.08"/></svg></div>
-          <div class="sr-right"><div class="sr-price">87.00</div><div class="sr-change down">-3.00 (-3.33%)</div></div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- TOP LOSERS -->
-    <div class="section">
-      <div class="section-title">Top losers</div>
-      <div class="stock-list">
-
-        <div class="stock-row">
-          <div class="sr-left"><div class="sr-ticker">ENVA</div><div class="sr-name">Enova International</div></div>
-          <div class="sr-spark"><svg viewBox="0 0 100 36" fill="none"><path d="M0,8 Q20,12 40,18 Q60,24 80,28 Q90,30 100,32" stroke="#c0392b" stroke-width="1.5" fill="none"/><path d="M0,8 Q20,12 40,18 Q60,24 80,28 Q90,30 100,32 L100,36 L0,36Z" fill="#c0392b" fill-opacity="0.08"/></svg></div>
-          <div class="sr-right"><div class="sr-price">173.98</div><div class="sr-change down">-18.20 (-9.48%)</div></div>
-        </div>
-
-        <div class="stock-row">
-          <div class="sr-left"><div class="sr-ticker">ALHC</div><div class="sr-name">Alignment Health</div></div>
-          <div class="sr-spark"><svg viewBox="0 0 100 36" fill="none"><path d="M0,6 Q20,10 40,16 Q60,22 80,28 Q90,30 100,33" stroke="#c0392b" stroke-width="1.5" fill="none"/><path d="M0,6 Q20,10 40,16 Q60,22 80,28 Q90,30 100,33 L100,36 L0,36Z" fill="#c0392b" fill-opacity="0.08"/></svg></div>
-          <div class="sr-right"><div class="sr-price">9.42</div><div class="sr-change down">-0.95 (-9.16%)</div></div>
-        </div>
-
-        <div class="stock-row">
-          <div class="sr-left"><div class="sr-ticker">ARWR</div><div class="sr-name">Arrowhead Pharma</div></div>
-          <div class="sr-spark"><svg viewBox="0 0 100 36" fill="none"><path d="M0,8 Q20,12 40,20 Q60,26 80,30 Q90,32 100,34" stroke="#c0392b" stroke-width="1.5" fill="none"/><path d="M0,8 Q20,12 40,20 Q60,26 80,30 Q90,32 100,34 L100,36 L0,36Z" fill="#c0392b" fill-opacity="0.08"/></svg></div>
-          <div class="sr-right"><div class="sr-price">67.28</div><div class="sr-change down">-3.39 (-4.80%)</div></div>
-        </div>
-
-        <div class="stock-row">
-          <div class="sr-left"><div class="sr-ticker">WING</div><div class="sr-name">Wingstop Inc.</div></div>
-          <div class="sr-spark"><svg viewBox="0 0 100 36" fill="none"><path d="M0,10 Q20,14 40,18 Q60,24 80,28 Q90,30 100,32" stroke="#c0392b" stroke-width="1.5" fill="none"/><path d="M0,10 Q20,14 40,18 Q60,24 80,28 Q90,30 100,32 L100,36 L0,36Z" fill="#c0392b" fill-opacity="0.08"/></svg></div>
-          <div class="sr-right"><div class="sr-price">103.53</div><div class="sr-change down">-8.20 (-7.34%)</div></div>
-        </div>
-
-        <div class="stock-row">
-          <div class="sr-left"><div class="sr-ticker">CRCL</div><div class="sr-name">Circle Internet Gr.</div></div>
-          <div class="sr-spark"><svg viewBox="0 0 100 36" fill="none"><path d="M0,6 Q20,10 40,18 Q60,26 80,30 Q90,32 100,34" stroke="#c0392b" stroke-width="1.5" fill="none"/><path d="M0,6 Q20,10 40,18 Q60,26 80,30 Q90,32 100,34 L100,36 L0,36Z" fill="#c0392b" fill-opacity="0.08"/></svg></div>
-          <div class="sr-right"><div class="sr-price">80.94</div><div class="sr-change down">-5.36 (-6.21%)</div></div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- MOST ACTIVE -->
-    <div class="section">
-      <div class="section-title">Most active</div>
-      <div class="stock-list">
-
-        <div class="stock-row">
-          <div class="sr-left"><div class="sr-ticker">NOK</div><div class="sr-name">Nokia Oyj</div></div>
-          <div class="sr-spark"><svg viewBox="0 0 100 36" fill="none"><path d="M0,24 Q20,20 40,16 Q60,12 80,8 Q90,6 100,4" stroke="#0a7c3e" stroke-width="1.5" fill="none"/><path d="M0,24 Q20,20 40,16 Q60,12 80,8 Q90,6 100,4 L100,36 L0,36Z" fill="#0a7c3e" fill-opacity="0.08"/></svg></div>
-          <div class="sr-right"><div class="sr-price">10.14</div><div class="sr-change up">+0.30 (+3.00%)</div></div>
-        </div>
-
-        <div class="stock-row">
-          <div class="sr-left"><div class="sr-ticker">AAL</div><div class="sr-name">American Airlines</div></div>
-          <div class="sr-spark"><svg viewBox="0 0 100 36" fill="none"><path d="M0,22 Q20,18 40,14 Q60,10 80,8 Q90,6 100,5" stroke="#0a7c3e" stroke-width="1.5" fill="none"/><path d="M0,22 Q20,18 40,14 Q60,10 80,8 Q90,6 100,5 L100,36 L0,36Z" fill="#0a7c3e" fill-opacity="0.08"/></svg></div>
-          <div class="sr-right"><div class="sr-price">13.13</div><div class="sr-change up">+0.35 (+2.78%)</div></div>
-        </div>
-
-        <div class="stock-row">
-          <div class="sr-left"><div class="sr-ticker">INTC</div><div class="sr-name">Intel Corporation</div></div>
-          <div class="sr-spark"><svg viewBox="0 0 100 36" fill="none"><path d="M0,20 Q20,16 35,12 Q50,8 60,14 Q75,22 90,18 Q95,16 100,20" stroke="#c0392b" stroke-width="1.5" fill="none"/><path d="M0,20 Q20,16 35,12 Q50,8 60,14 Q75,22 90,18 Q95,16 100,20 L100,36 L0,36Z" fill="#c0392b" fill-opacity="0.08"/></svg></div>
-          <div class="sr-right"><div class="sr-price">101.40</div><div class="sr-change up">+4.26 (+4.38%)</div></div>
-        </div>
-
-        <div class="stock-row">
-          <div class="sr-left"><div class="sr-ticker">GRAB</div><div class="sr-name">Grab Holdings Ltd.</div></div>
-          <div class="sr-spark"><svg viewBox="0 0 100 36" fill="none"><path d="M0,26 Q20,22 40,18 Q60,14 80,10 Q90,8 100,6" stroke="#0a7c3e" stroke-width="1.5" fill="none"/><path d="M0,26 Q20,22 40,18 Q60,14 80,10 Q90,8 100,6 L100,36 L0,36Z" fill="#0a7c3e" fill-opacity="0.08"/></svg></div>
-          <div class="sr-right"><div class="sr-price">2.9600</div><div class="sr-change up">+0.05 (+1.72%)</div></div>
-        </div>
-
-        <div class="stock-row">
-          <div class="sr-left"><div class="sr-ticker">PATH</div><div class="sr-name">UiPath, Inc.</div></div>
-          <div class="sr-spark"><svg viewBox="0 0 100 36" fill="none"><path d="M0,12 Q20,14 40,18 Q60,22 80,26 Q90,28 100,30" stroke="#c0392b" stroke-width="1.5" fill="none"/><path d="M0,12 Q20,14 40,18 Q60,22 80,26 Q90,28 100,30 L100,36 L0,36Z" fill="#c0392b" fill-opacity="0.08"/></svg></div>
-          <div class="sr-right"><div class="sr-price">13.89</div><div class="sr-change down">-0.34 (-2.42%)</div></div>
-        </div>
-
-      </div>
-    </div>
-
-  </div><!-- /side-col -->
-
-</div><!-- /page -->
-</body>
+    <!-- /page -->
+  </body>
 </html>
