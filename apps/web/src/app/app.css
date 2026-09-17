@@ -157,11 +157,14 @@ body {
   display: flex;
   flex-direction: column;
 }
-.app-main {
+
+.page {
+  padding: 8px;
+  gap: 24px;
+
   display: grid;
   place-items: center;
   flex: 1;
-  padding: 8;
   background-color: #f5f5f5;
 }
 

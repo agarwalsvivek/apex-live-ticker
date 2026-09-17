@@ -20,7 +20,7 @@ export function App() {
         </div>
       </header>
 
-      <main className="app-main">
+      <main className="page">
         <LaunchCountdown />
       </main>
     </div>
