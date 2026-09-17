@@ -58,28 +58,42 @@ const SPARK_COLOR: Record<TickerDirection, string> = {
   down: '#c0392b',
 };
 
-const HeaderTickers = () => {
+const TickerList = () => {
   return (
-    <div className="header-tickers">
-      {TICKERS.map((ticker) => (
-        <div className="header-ticker" key={ticker.name}>
-          <svg className="ht-spark" viewBox="0 0 52 28" fill="none">
-            <polyline
-              points={ticker.sparkPoints}
-              stroke={SPARK_COLOR[ticker.direction]}
-              strokeWidth="1.5"
-              fill="none"
-            />
-          </svg>
-          <div className="ht-info">
-            <div className="ht-name">{ticker.name}</div>
-            <div className="ht-price">{ticker.price}</div>
-            <div className={`ht-chg ${ticker.direction}`}>{ticker.change}</div>
+    <div className="ticker-bar">
+      <div className="ticker-market-label">
+        <span className="icon" role="img" aria-label="Global markets">
+          🌐
+        </span>
+        Apex finance
+      </div>
+      <div className="ticker-list">
+        {TICKERS.map((ticker) => (
+          <div className="ticker-item" key={ticker.name}>
+            <svg className="ticker-spark" viewBox="0 0 52 28" fill="none">
+              <polyline
+                points={ticker.sparkPoints}
+                stroke={SPARK_COLOR[ticker.direction]}
+                strokeWidth="1.5"
+                fill="none"
+              />
+            </svg>
+            <div className="ticker-info">
+              <div className="ticker-name">{ticker.name}</div>
+              <div className="ticker-price">{ticker.price}</div>
+              <div className={`ticker-chg ${ticker.direction}`}>
+                {ticker.change}
+              </div>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
+      <div className="ticker-nav">
+        <button>‹</button>
+        <button>›</button>
+      </div>
     </div>
   );
 };
 
-export default HeaderTickers;
+export default TickerList;

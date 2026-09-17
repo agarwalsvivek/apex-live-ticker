@@ -13,122 +13,127 @@
 
   <body>
     <!-- ══════════════════════════════════
-     HEADER TICKER BAR
+     HEADER
 ══════════════════════════════════ -->
     <header class="header">
-      <div class="header-market-label">
-        <div class="icon">🌐</div>
-        US Markets ↓
-      </div>
-
-      <div class="header-tickers">
-        <div class="header-ticker">
-          <svg class="ht-spark" viewBox="0 0 52 28" fill="none">
-            <polyline
-              points="0,20 8,18 16,14 24,16 32,10 40,12 52,6"
-              stroke="#0a7c3e"
-              stroke-width="1.5"
-              fill="none"
-            />
-          </svg>
-          <div class="ht-info">
-            <div class="ht-name">Dow Futures</div>
-            <div class="ht-price">52,605.00</div>
-            <div class="ht-chg up">+79.00 +0.15%</div>
-          </div>
-        </div>
-
-        <div class="header-ticker">
-          <svg class="ht-spark" viewBox="0 0 52 28" fill="none">
-            <polyline
-              points="0,22 8,18 16,12 24,15 32,9 40,11 52,5"
-              stroke="#0a7c3e"
-              stroke-width="1.5"
-              fill="none"
-            />
-          </svg>
-          <div class="ht-info">
-            <div class="ht-name">Nasdaq Futures</div>
-            <div class="ht-price">29,374.25</div>
-            <div class="ht-chg up">+127.50 +0.44%</div>
-          </div>
-        </div>
-
-        <div class="header-ticker">
-          <svg class="ht-spark" viewBox="0 0 52 28" fill="none">
-            <polyline
-              points="0,20 8,16 16,14 24,18 32,12 40,10 52,8"
-              stroke="#0a7c3e"
-              stroke-width="1.5"
-              fill="none"
-            />
-          </svg>
-          <div class="ht-info">
-            <div class="ht-name">Russell 2000 Futures</div>
-            <div class="ht-price">2,899.40</div>
-            <div class="ht-chg up">+4.70 +0.16%</div>
-          </div>
-        </div>
-
-        <div class="header-ticker">
-          <svg class="ht-spark" viewBox="0 0 52 28" fill="none">
-            <polyline
-              points="0,8 8,10 16,14 24,12 32,18 40,20 52,22"
-              stroke="#c0392b"
-              stroke-width="1.5"
-              fill="none"
-            />
-          </svg>
-          <div class="ht-info">
-            <div class="ht-name">VIX</div>
-            <div class="ht-price">16.80</div>
-            <div class="ht-chg down">-0.40 -2.33%</div>
-          </div>
-        </div>
-
-        <div class="header-ticker">
-          <svg class="ht-spark" viewBox="0 0 52 28" fill="none">
-            <polyline
-              points="0,20 8,17 16,14 24,16 32,11 40,8 52,6"
-              stroke="#0a7c3e"
-              stroke-width="1.5"
-              fill="none"
-            />
-          </svg>
-          <div class="ht-info">
-            <div class="ht-name">Gold</div>
-            <div class="ht-price">4,384.90</div>
-            <div class="ht-chg up">+52.10 +1.20%</div>
-          </div>
-        </div>
-
-        <div class="header-ticker">
-          <svg class="ht-spark" viewBox="0 0 52 28" fill="none">
-            <polyline
-              points="0,10 8,14 16,18 24,14 32,20 40,22 52,24"
-              stroke="#c0392b"
-              stroke-width="1.5"
-              fill="none"
-            />
-          </svg>
-          <div class="ht-info">
-            <div class="ht-name">Crude Oil Oct 26</div>
-            <div class="ht-price">103.95</div>
-            <div class="ht-chg down">-1.88 -1.78%</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="header-nav">
-        <button>‹</button>
-        <button>›</button>
+      <div class="header-title">Equity Stream</div>
+      <div class="header-search">
+        <input type="search" placeholder="Search stocks, ETFs & more" />
       </div>
     </header>
 
-    <!-- ══════════════════════════════════
-     PAGE BODY
-══════════════════════════════════ -->
-    <div class="page">
+    <!-- ══════════════════════════════════ Main PAGE BODY ══════════════════════════════════ -->
+    <main class="page">
+      <!-- MARKET TICKER BAR -->
+      <div class="ticker-bar">
+        <div class="ticker-market-label">
+          <div class="icon">🌐</div>
+          US Markets ↓
+        </div>
+
+        <div class="ticker-list">
+          <div class="ticker-item">
+            <svg class="ticker-spark" viewBox="0 0 52 28" fill="none">
+              <polyline
+                points="0,20 8,18 16,14 24,16 32,10 40,12 52,6"
+                stroke="#0a7c3e"
+                stroke-width="1.5"
+                fill="none"
+              />
+            </svg>
+            <div class="ticker-info">
+              <div class="ticker-name">Dow Futures</div>
+              <div class="ticker-price">52,605.00</div>
+              <div class="ticker-chg up">+79.00 +0.15%</div>
+            </div>
+          </div>
+
+          <div class="ticker-item">
+            <svg class="ticker-spark" viewBox="0 0 52 28" fill="none">
+              <polyline
+                points="0,22 8,18 16,12 24,15 32,9 40,11 52,5"
+                stroke="#0a7c3e"
+                stroke-width="1.5"
+                fill="none"
+              />
+            </svg>
+            <div class="ticker-info">
+              <div class="ticker-name">Nasdaq Futures</div>
+              <div class="ticker-price">29,374.25</div>
+              <div class="ticker-chg up">+127.50 +0.44%</div>
+            </div>
+          </div>
+
+          <div class="ticker-item">
+            <svg class="ticker-spark" viewBox="0 0 52 28" fill="none">
+              <polyline
+                points="0,20 8,16 16,14 24,18 32,12 40,10 52,8"
+                stroke="#0a7c3e"
+                stroke-width="1.5"
+                fill="none"
+              />
+            </svg>
+            <div class="ticker-info">
+              <div class="ticker-name">Russell 2000 Futures</div>
+              <div class="ticker-price">2,899.40</div>
+              <div class="ticker-chg up">+4.70 +0.16%</div>
+            </div>
+          </div>
+
+          <div class="ticker-item">
+            <svg class="ticker-spark" viewBox="0 0 52 28" fill="none">
+              <polyline
+                points="0,8 8,10 16,14 24,12 32,18 40,20 52,22"
+                stroke="#c0392b"
+                stroke-width="1.5"
+                fill="none"
+              />
+            </svg>
+            <div class="ticker-info">
+              <div class="ticker-name">VIX</div>
+              <div class="ticker-price">16.80</div>
+              <div class="ticker-chg down">-0.40 -2.33%</div>
+            </div>
+          </div>
+
+          <div class="ticker-item">
+            <svg class="ticker-spark" viewBox="0 0 52 28" fill="none">
+              <polyline
+                points="0,20 8,17 16,14 24,16 32,11 40,8 52,6"
+                stroke="#0a7c3e"
+                stroke-width="1.5"
+                fill="none"
+              />
+            </svg>
+            <div class="ticker-info">
+              <div class="ticker-name">Gold</div>
+              <div class="ticker-price">4,384.90</div>
+              <div class="ticker-chg up">+52.10 +1.20%</div>
+            </div>
+          </div>
+
+          <div class="ticker-item">
+            <svg class="ticker-spark" viewBox="0 0 52 28" fill="none">
+              <polyline
+                points="0,10 8,14 16,18 24,14 32,20 40,22 52,24"
+                stroke="#c0392b"
+                stroke-width="1.5"
+                fill="none"
+              />
+            </svg>
+            <div class="ticker-info">
+              <div class="ticker-name">Crude Oil Oct 26</div>
+              <div class="ticker-price">103.95</div>
+              <div class="ticker-chg down">-1.88 -1.78%</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ticker-nav">
+          <button>‹</button>
+          <button>›</button>
+        </div>
+      </div>
       <!-- MAIN COLUMN -->
       <div class="main-col">
         <!-- RECENTLY VIEWED -->
@@ -867,7 +872,7 @@
         </div>
       </div>
       <!-- /side-col -->
-    </div>
+    </main>
     <!-- /page -->
   </body>
 </html>

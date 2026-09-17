@@ -31,24 +31,65 @@ body {
   min-height: 100vh;
 }
 
-
-/* ── HEADER TICKER BAR ── */
+/* ── HEADER ── */
 .header {
   background: var(--header-bg);
   border-bottom: 1px solid var(--border);
-  padding: 0 24px;
+  padding: 0 8px;
   display: flex;
   align-items: center;
-  gap: 0;
+  justify-content: space-between;
+  gap: 16px;
   height: 60px;
-  overflow: hidden;
   position: sticky;
   top: 0;
   z-index: 100;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
 }
 
-.header-market-label {
+.header-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-pri);
+  white-space: nowrap;
+}
+
+.header-search {
+  flex: 1;
+  max-width: 360px;
+}
+.header-search input {
+  width: 100%;
+  height: 36px;
+  padding: 0 14px;
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--text-pri);
+  outline: none;
+  transition:
+    border-color 0.15s,
+    background 0.15s;
+}
+.header-search input::placeholder {
+  color: var(--text-muted);
+}
+.header-search input:focus {
+  border-color: var(--blue);
+  background: var(--bg);
+}
+
+/* ── MARKET TICKER BAR (now lives in a section) ── */
+.ticker-bar {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  overflow: hidden;
+}
+
+.ticker-market-label {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -62,7 +103,7 @@ body {
   flex-shrink: 0;
 }
 
-.header-market-label .icon {
+.ticker-market-label .icon {
   width: 28px;
   height: 28px;
   border-radius: 50%;
@@ -73,7 +114,7 @@ body {
   font-size: 14px;
 }
 
-.header-tickers {
+.ticker-list {
   display: flex;
   align-items: center;
   gap: 0;
@@ -81,7 +122,7 @@ body {
   overflow: hidden;
 }
 
-.header-ticker {
+.ticker-item {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -90,51 +131,51 @@ body {
   min-width: 0;
   flex-shrink: 0;
 }
-.header-ticker:first-child {
+.ticker-item:first-child {
   padding-left: 0;
 }
 
-.ht-spark {
+.ticker-spark {
   width: 52px;
   height: 28px;
   flex-shrink: 0;
 }
 
-.ht-info {
+.ticker-info {
 }
-.ht-name {
+.ticker-name {
   font-size: 11px;
   font-weight: 600;
   color: var(--blue);
   white-space: nowrap;
 }
-.ht-price {
+.ticker-price {
   font-family: var(--mono);
   font-size: 13px;
   font-weight: 600;
   color: var(--text-pri);
   margin-top: 1px;
 }
-.ht-chg {
+.ticker-chg {
   font-family: var(--mono);
   font-size: 11px;
   font-weight: 500;
   margin-top: 1px;
 }
-.ht-chg.up {
+.ticker-chg.up {
   color: var(--green);
 }
-.ht-chg.down {
+.ticker-chg.down {
   color: var(--red);
 }
 
-.header-nav {
+.ticker-nav {
   display: flex;
   gap: 4px;
   margin-left: 12px;
   flex-shrink: 0;
 }
-.header-nav button {
+.ticker-nav button {
   width: 28px;
   height: 28px;
   border-radius: 50%;
@@ -148,17 +189,23 @@ body {
   justify-content: center;
   transition: all 0.15s;
 }
-.header-nav button:hover {
+.ticker-nav button:hover {
   background: var(--bg-hover);
 }
 
 /* ── PAGE BODY ── */
 .page {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
   max-width: 1200px;
   margin: 0 auto;
-  padding: 28px 24px 60px;
-  display: flex;
+  padding: 16px;
   gap: 24px;
+}
+
+.page > *:first-child {
+  grid-column: 1 / -1;
 }
 
 /* ── MAIN COLUMN ── */
@@ -276,12 +323,12 @@ body {
   .side-col {
     width: 100%;
   }
-  .header-ticker:nth-child(n + 5) {
+  .ticker-item:nth-child(n + 5) {
     display: none;
   }
 }
 @media (max-width: 600px) {
-  .header-ticker:nth-child(n + 3) {
+  .ticker-item:nth-child(n + 3) {
     display: none;
   }
 }
