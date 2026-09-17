@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getRemaining, LAUNCH_DATE, pad } from '../common/utils';
+import { getRemaining, LAUNCH_DATE, pad } from '../../common/utils';
 import './launch.css';
 
 const LaunchCountdown = () => {

@@ -156,6 +156,8 @@ body {
 .header-nav button:hover {
   background: var(--bg-hover);
 }
+
+/* ── PAGE BODY ── */
 .app-main {
   display: grid;
   place-items: center;
