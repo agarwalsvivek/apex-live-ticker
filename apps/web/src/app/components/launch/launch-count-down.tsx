@@ -14,7 +14,7 @@ const LaunchCountdown = () => {
   }, [target]);
 
   return (
-    <div className="launch-countdown">
+    <section className="section">
       <p>Launching soon.....</p>
       <div className="countdown-timer">
         <div className="countdown-unit">
@@ -34,7 +34,7 @@ const LaunchCountdown = () => {
           <span className="countdown-label">Seconds</span>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

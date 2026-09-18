@@ -1,17 +1,3 @@
-.launch-countdown {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 24px;
-  text-align: center;
-  color: var(--text-pri);
-}
-
-.launch-countdown p {
-  font-size: 1.5rem;
-  font-weight: 600;
-}
-
 .countdown-timer {
   display: flex;
   gap: 16px;
