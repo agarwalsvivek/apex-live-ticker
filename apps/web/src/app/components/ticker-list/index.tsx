@@ -61,12 +61,6 @@ const SPARK_COLOR: Record<TickerDirection, string> = {
 const TickerList = () => {
   return (
     <div className="ticker-bar">
-      <div className="ticker-market-label">
-        <span className="icon" role="img" aria-label="Global markets">
-          🌐
-        </span>
-        Apex finance
-      </div>
       <div className="ticker-list">
         {TICKERS.map((ticker) => (
           <div className="ticker-item" key={ticker.name}>

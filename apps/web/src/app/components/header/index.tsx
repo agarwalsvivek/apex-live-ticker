@@ -5,7 +5,7 @@ const Header = () => {
         <span className="icon" role="img" aria-label="Global markets">
           🌐
         </span>
-        Apex Stream
+        Apex finance
       </div>
       <div className="header-search">
         <input type="search" placeholder="Search stocks, ETFs & more" />
