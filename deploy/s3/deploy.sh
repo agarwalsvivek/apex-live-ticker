@@ -24,8 +24,12 @@ fi
 ROOT="$(git rev-parse --show-toplevel)"
 cd "$ROOT"
 
-echo "==> Building web"
-npx nx build web
+# S3 has no /api proxy, so the frontend must call the API host directly.
+export VITE_API_BASE_URL="${VITE_API_BASE_URL:-https://api.agarwalsvivek.com}"
+
+echo "==> Building web (API: $VITE_API_BASE_URL)"
+# skip the Nx cache so a local build without VITE_API_BASE_URL is never reused
+npx nx build web --skip-nx-cache
 
 echo "==> Syncing apps/web/dist to s3://$BUCKET_NAME"
 aws s3 sync apps/web/dist "s3://$BUCKET_NAME" --delete "${AWS_ARGS[@]}"

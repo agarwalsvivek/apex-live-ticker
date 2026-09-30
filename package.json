@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "deploy:ec2": "bash -c 'set -a; [ -f deploy/ec2/.env ] && source deploy/ec2/.env; set +a; ./deploy/ec2/build-artifacts.sh && ./deploy/ec2/push-deploy.sh'",
+    "deploy:ec2XXX": "bash -c 'set -a; [ -f deploy/ec2/.env ] && source deploy/ec2/.env; set +a; ./deploy/ec2/build-artifacts.sh && ./deploy/ec2/push-deploy.sh'",
     "deploy:s3": "bash -c 'set -a; [ -f deploy/s3/.env ] && source deploy/s3/.env; set +a; ./deploy/s3/deploy.sh'"
   },
   "private": true,

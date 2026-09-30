@@ -8,6 +8,10 @@ export default defineConfig(() => ({
   server: {
     port: 4200,
     host: 'localhost',
+    // forward API calls to the backend so the browser sees a same-origin request (no CORS)
+    proxy: {
+      '/api': 'http://localhost:3333',
+    },
   },
   preview: {
     port: 4200,

@@ -166,32 +166,48 @@ body {
 @keyframes flash-up {
   0% {
     background-color: var(--green-bg);
-    font-weight: 600;
+    color: var(--green);
+  }
+  80% {
+    background-color: var(--green-bg);
+    color: var(--green);
   }
   100% {
     background-color: transparent;
+    color: inherit;
   }
 }
+
 @keyframes flash-down {
   0% {
     background-color: var(--red-bg);
-    font-weight: 600;
+    color: var(--red);
+  }
+  80% {
+    background-color: var(--red-bg);
+    color: var(--red);
   }
   100% {
     background-color: transparent;
+    color: inherit;
   }
 }
+
 .price-flash-up {
   color: var(--green);
   animation: flash-up 1.2s ease-out;
   display: block;
   text-align: right;
+  border-radius: 4px;
+  padding: 0 4px;
 }
 .price-flash-down {
   color: var(--red);
   animation: flash-down 1.2s ease-out;
   display: block;
   text-align: right;
+  border-radius: 4px;
+  padding: 0 4px;
 }
 
 .ticker-nav {

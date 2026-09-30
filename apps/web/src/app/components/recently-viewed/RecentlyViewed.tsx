@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-const WS_URL = 'wss://translator.agarwalsvivek.com/ws';
+const WS_URL = 'wss://api.agarwalsvivek.com/ws';
 
 type Ticker = {
   price: number;

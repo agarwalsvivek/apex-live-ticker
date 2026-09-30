@@ -3,6 +3,7 @@ import Header from './components/header';
 import TickerList from './components/ticker-list';
 import LaunchCountdown from './components/launch/launch-count-down';
 import RecentlyViewed from './components/recently-viewed/RecentlyViewed';
+import StockSearch from './components/stock-search/StockSearch';
 
 export function App() {
   return (
@@ -10,8 +11,9 @@ export function App() {
       <Header />
       <main className="page">
         <TickerList />
-        <LaunchCountdown />
+        <StockSearch />
         <RecentlyViewed />
+        <LaunchCountdown />
       </main>
     </div>
   );
