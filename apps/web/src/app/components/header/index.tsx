@@ -1,3 +1,5 @@
+import StockSearch from '../stock-search/StockSearch';
+
 const Header = () => {
   return (
     <header className="header">
@@ -7,9 +9,7 @@ const Header = () => {
         </span>
         Apex finance
       </div>
-      <div className="header-search">
-        <input type="search" placeholder="Search stocks, ETFs & more" />
-      </div>
+      <StockSearch />
     </header>
   );
 };
