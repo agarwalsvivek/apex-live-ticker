@@ -38,7 +38,7 @@ function flush() {
   if (pending.size === 0) return;
   const update = Array.from(pending.values());
   pending = new Map();
-  self.postMessage({ type: 'batch', seq: ++seq, update, ticks });
+  globalThis.postMessage({ type: 'batch', seq: ++seq, update, ticks });
   ticks = 0;
 }
 
@@ -59,18 +59,18 @@ function stop(finalFlush = true) {
   if (finalFlush) flush();
 }
 
-self.onmessage = ({ data: msg }) => {
+globalThis.onmessage = ({ data: msg }) => {
   switch (msg.type) {
     case 'init':
       seed(msg.rowCount);
-      self.postMessage({ type: 'snapshot', rows: Array.from(rows.values()) });
+      globalThis.postMessage({ type: 'snapshot', rows: Array.from(rows.values()) });
       break;
     case 'start':
       start();
       break;
     case 'stop':
       stop();
-      self.postMessage({ type: 'stopped' });
+      globalThis.postMessage({ type: 'stopped' });
       break;
     case 'config': {
       const running = feedTimer !== null;

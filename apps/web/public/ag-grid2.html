@@ -21,7 +21,7 @@
         --up-bg: #e7f6ec;
         --down: #c81e1e;
         --down-bg: #fdecec;
-        --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+        --mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
       }
 
       body {
@@ -262,33 +262,33 @@
     <script>
       // ---- 1. Initial data ----
       const symbols = [
-        "AAPL",
-        "MSFT",
-        "GOOG",
-        "AMZN",
-        "META",
-        "NVDA",
-        "TSLA",
-        "NFLX",
-        "ORCL",
-        "INTC",
-        "AMD",
-        "IBM",
-        "CRM",
-        "ADBE",
-        "PYPL",
-        "UBER",
-        "SHOP",
-        "SQ",
-        "SNOW",
-        "PLTR",
+        'AAPL',
+        'MSFT',
+        'GOOG',
+        'AMZN',
+        'META',
+        'NVDA',
+        'TSLA',
+        'NFLX',
+        'ORCL',
+        'INTC',
+        'AMD',
+        'IBM',
+        'CRM',
+        'ADBE',
+        'PYPL',
+        'UBER',
+        'SHOP',
+        'SQ',
+        'SNOW',
+        'PLTR',
       ];
       const rowData = symbols.map((symbol) => ({
         symbol,
         price: +(50 + Math.random() * 450).toFixed(2),
         change: 0,
         volume: 0,
-        sector: ["Tech", "Consumer", "Finance"][Math.floor(Math.random() * 3)],
+        sector: ['Tech', 'Consumer', 'Finance'][Math.floor(Math.random() * 3)],
       }));
 
       // ---- 2. Grid setup ----
@@ -299,24 +299,24 @@
         getRowId: (params) => params.data.symbol,
         columnDefs: [
           {
-            field: "sector",
+            field: 'sector',
             rowGroup: false,
             cellRenderer: (p) =>
               `<span class="sector-badge sector-${p.value}">${p.value}</span>`,
           },
-          { field: "symbol", cellClass: "symbol-cell" },
+          { field: 'symbol', cellClass: 'symbol-cell' },
           {
-            field: "price",
+            field: 'price',
             valueFormatter: (p) => p.value.toFixed(2),
-            cellRenderer: "agAnimateShowChangeCellRenderer",
+            cellRenderer: 'agAnimateShowChangeCellRenderer',
           },
           {
-            field: "change",
+            field: 'change',
             cellRenderer: (p) =>
-              `<span class="change-pill ${p.value >= 0 ? "change-up" : "change-down"}">` +
-              `${p.value >= 0 ? "▲" : "▼"} ${Math.abs(p.value).toFixed(2)}</span>`,
+              `<span class="change-pill ${p.value >= 0 ? 'change-up' : 'change-down'}">` +
+              `${p.value >= 0 ? '▲' : '▼'} ${Math.abs(p.value).toFixed(2)}</span>`,
           },
-          { field: "volume", sort: "desc" }, // sorting makes each sync update expensive
+          { field: 'volume' }, // sorting makes each sync update expensive
         ],
         defaultColDef: { flex: 1, sortable: true, filter: true },
         // How long the grid waits to collect async transactions before applying them (default 50ms)
@@ -324,14 +324,14 @@
         // Fires each time a batch of async transactions is applied
         onAsyncTransactionsFlushed: (event) => {
           batchCount++;
-          document.getElementById("batches").textContent = batchCount;
+          document.getElementById('batches').textContent = batchCount;
           console.log(
             `Applied ${event.results.length} transactions in one batch`,
           );
         },
       };
       const gridApi = agGrid.createGrid(
-        document.getElementById("grid"),
+        document.getElementById('grid'),
         gridOptions,
       );
 
@@ -348,7 +348,7 @@
 
         const transaction = { update: [{ ...row }] };
 
-        if (document.getElementById("asyncToggle").checked) {
+        if (document.getElementById('asyncToggle').checked) {
           // Queued and applied with others in the next batch
           gridApi.applyTransactionAsync(transaction, (result) => {
             // Optional: runs when this transaction is actually applied
@@ -358,27 +358,27 @@
           // Applied immediately: re-sort and re-render on every call
           gridApi.applyTransaction(transaction);
           batchCount++;
-          document.getElementById("batches").textContent = batchCount;
+          document.getElementById('batches').textContent = batchCount;
         }
 
         sentCount++;
-        document.getElementById("sent").textContent = sentCount;
+        document.getElementById('sent').textContent = sentCount;
       }
 
-      document.getElementById("startBtn").onclick = () => {
+      document.getElementById('startBtn').onclick = () => {
         // ~100 updates per second
         timer = setInterval(sendRandomUpdate, 100);
         startBtn.disabled = true;
         stopBtn.disabled = false;
       };
-      document.getElementById("stopBtn").onclick = () => {
+      document.getElementById('stopBtn').onclick = () => {
         clearInterval(timer);
         gridApi.flushAsyncTransactions(); // apply anything still queued
         startBtn.disabled = false;
         stopBtn.disabled = true;
       };
       // Force-apply the queue immediately instead of waiting for asyncTransactionWaitMillis
-      document.getElementById("flushBtn").onclick = () =>
+      document.getElementById('flushBtn').onclick = () =>
         gridApi.flushAsyncTransactions();
     </script>
   </body>
