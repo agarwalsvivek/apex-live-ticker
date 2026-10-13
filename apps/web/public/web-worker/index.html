@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Real-time grid</title>
+    <!-- The default UMD bundle includes the grid styles -->
+    <script src="https://cdn.jsdelivr.net/npm/ag-grid-community@32.3.3/dist/ag-grid-community.min.js"></script>
+    <style>
+        :root {
+            --bg: #f4f6fa;
+            --surface: #ffffff;
+            --surface-2: #f1f4f9;
+            --border: #dde3ec;
+            --text: #0f172a;
+            --muted: #5b6b82;
+            --accent: #1d4ed8;
+            --navy: #1e3a8a;
+            --gold: #d4a017;
+            --up: #15803d;
+            --down: #c81e1e;
+            --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+        }
+
+        body {
+            font-family: system-ui, sans-serif;
+            margin: 0;
+            padding: 24px 16px;
+            min-height: 100vh;
+            box-sizing: border-box;
+            color: var(--text);
+            background: var(--bg);
+        }
+
+        h1 {
+            margin: 0 0 16px;
+            font-size: 1.4rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            padding-left: 12px;
+            border-left: 4px solid var(--gold);
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        button {
+            border: 1px solid transparent;
+            border-radius: 6px;
+            padding: 8px 16px;
+            font: inherit;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            transition: background 0.15s, opacity 0.15s;
+        }
+
+        button:disabled {
+            opacity: 0.35;
+            cursor: not-allowed;
+        }
+
+        #start {
+            background: var(--up);
+        }
+
+        #start:hover:not(:disabled) {
+            background: #166534;
+        }
+
+        #stop {
+            background: var(--down);
+        }
+
+        #stop:hover:not(:disabled) {
+            background: #a51a1a;
+        }
+
+        .toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 14px;
+            border-radius: 6px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .toggle input {
+            accent-color: var(--gold);
+            width: 16px;
+            height: 16px;
+        }
+
+        #stats {
+            min-height: 1.2em;
+            margin-bottom: 16px;
+            padding: 10px 16px;
+            border-radius: 8px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-top: 3px solid var(--accent);
+            box-shadow: 0 1px 3px rgb(15 23 42 / 0.06);
+            color: var(--muted);
+            font-family: var(--mono);
+            font-size: 0.85rem;
+            font-variant-numeric: tabular-nums;
+        }
+
+        #grid {
+            height: 600px;
+        }
+
+        /* AG Grid theme overrides */
+        .ag-theme-quartz {
+            --ag-background-color: var(--surface);
+            --ag-foreground-color: var(--text);
+            --ag-header-background-color: var(--surface-2);
+            --ag-header-foreground-color: var(--navy);
+            --ag-odd-row-background-color: #fafbfd;
+            --ag-row-hover-color: #eef3ff;
+            --ag-border-color: var(--border);
+            --ag-row-border-color: var(--border);
+            --ag-wrapper-border-radius: 8px;
+            --ag-value-change-delta-up-color: var(--up);
+            --ag-value-change-delta-down-color: var(--down);
+            --ag-value-change-value-highlight-background-color: #fdf3d0;
+        }
+
+        .ag-theme-quartz .ag-header-cell-text {
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.06em;
+        }
+
+        .ag-theme-quartz .ag-cell {
+            font-family: var(--mono);
+            font-variant-numeric: tabular-nums;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Real-time grid (Web Worker)</h1>
+    <div class="controls">
+        <button id="start" disabled>▶ Start</button>
+        <button id="stop">■ Stop</button>
+        <label class="toggle"><input type="checkbox" id="async" checked> applyTransactionAsync</label>
+    </div>
+    <div id="stats"></div>
+    <div id="grid" class="ag-theme-quartz"></div>
+    <script src="main.js"></script>
+</body>
+
+</html>

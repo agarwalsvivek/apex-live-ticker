@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AG Grid applyTransactionAsync Demo</title>
+    <!-- The default UMD bundle includes the grid styles -->
+    <script src="https://cdn.jsdelivr.net/npm/ag-grid-community@32.3.3/dist/ag-grid-community.min.js"></script>
+    <style>
+      :root {
+        --bg: #f4f6fa;
+        --surface: #ffffff;
+        --surface-2: #f1f4f9;
+        --border: #dde3ec;
+        --text: #0f172a;
+        --muted: #5b6b82;
+        --accent: #1d4ed8;
+        --navy: #1e3a8a;
+        --gold: #d4a017;
+        --up: #15803d;
+        --up-bg: #e7f6ec;
+        --down: #c81e1e;
+        --down-bg: #fdecec;
+        --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      }
+
+      body {
+        font-family: system-ui, sans-serif;
+        margin: 0;
+        padding: 24px 16px;
+        min-height: 100vh;
+        box-sizing: border-box;
+        color: var(--text);
+        background: var(--bg);
+      }
+
+      h1 {
+        margin: 0 0 16px;
+        font-size: 1.4rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        padding-left: 12px;
+        border-left: 4px solid var(--gold);
+      }
+
+      .controls {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-bottom: 16px;
+      }
+
+      button {
+        border: 1px solid transparent;
+        border-radius: 6px;
+        padding: 8px 16px;
+        font: inherit;
+        font-size: 0.9rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition:
+          background 0.15s,
+          opacity 0.15s;
+      }
+
+      button:disabled {
+        opacity: 0.35;
+        cursor: not-allowed;
+      }
+
+      #startBtn {
+        background: var(--up);
+        color: white;
+      }
+
+      #startBtn:hover:not(:disabled) {
+        background: #166534;
+      }
+
+      #stopBtn {
+        background: var(--down);
+        color: white;
+      }
+
+      #stopBtn:hover:not(:disabled) {
+        background: #a51a1a;
+      }
+
+      #flushBtn {
+        background: var(--surface);
+        border-color: var(--accent);
+        color: var(--accent);
+        font-family: var(--mono);
+      }
+
+      #flushBtn:hover {
+        background: #eef3ff;
+      }
+
+      .toggle {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 7px 14px;
+        border-radius: 6px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        color: var(--muted);
+        font-size: 0.9rem;
+        cursor: pointer;
+      }
+
+      .toggle input {
+        accent-color: var(--gold);
+        width: 16px;
+        height: 16px;
+      }
+
+      .stats {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 16px;
+      }
+
+      .stat {
+        min-width: 180px;
+        padding: 10px 16px;
+        border-radius: 8px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        box-shadow: 0 1px 3px rgb(15 23 42 / 0.06);
+        color: var(--muted);
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+
+      .stat b {
+        display: block;
+        margin-top: 4px;
+        font-family: var(--mono);
+        font-size: 1.5rem;
+        font-variant-numeric: tabular-nums;
+        letter-spacing: 0;
+        color: var(--text);
+      }
+
+      .stat-sent {
+        border-top: 3px solid var(--gold);
+      }
+
+      .stat-batches {
+        border-top: 3px solid var(--accent);
+      }
+
+      #grid {
+        height: 520px;
+      }
+
+      /* AG Grid theme overrides */
+      .ag-theme-quartz {
+        --ag-background-color: var(--surface);
+        --ag-foreground-color: var(--text);
+        --ag-header-background-color: var(--surface-2);
+        --ag-header-foreground-color: var(--navy);
+        --ag-odd-row-background-color: #fafbfd;
+        --ag-row-hover-color: #eef3ff;
+        --ag-border-color: var(--border);
+        --ag-row-border-color: var(--border);
+        --ag-wrapper-border-radius: 8px;
+        --ag-value-change-delta-up-color: var(--up);
+        --ag-value-change-delta-down-color: var(--down);
+        --ag-value-change-value-highlight-background-color: #fdf3d0;
+      }
+
+      .ag-theme-quartz .ag-header-cell-text {
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        letter-spacing: 0.06em;
+      }
+
+      .ag-theme-quartz .ag-cell {
+        font-family: var(--mono);
+        font-variant-numeric: tabular-nums;
+      }
+
+      .symbol-cell {
+        font-weight: 700;
+        color: var(--navy);
+      }
+
+      .sector-badge {
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-family: system-ui, sans-serif;
+        font-size: 0.75rem;
+        font-weight: 600;
+        border: 1px solid;
+      }
+
+      .sector-Tech {
+        color: #1d4ed8;
+        border-color: #bfd0f7;
+        background: #eef3ff;
+      }
+
+      .sector-Consumer {
+        color: #6d28d9;
+        border-color: #d9ccf7;
+        background: #f4f0ff;
+      }
+
+      .sector-Finance {
+        color: #0f766e;
+        border-color: #b9e3de;
+        background: #ebf8f6;
+      }
+
+      .change-pill {
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-weight: 600;
+      }
+
+      .change-up {
+        background: var(--up-bg);
+        color: var(--up);
+      }
+
+      .change-down {
+        background: var(--down-bg);
+        color: var(--down);
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>AG Grid applyTransactionAsync Demo</h1>
+    <div class="controls">
+      <button id="startBtn">▶ Start feed</button>
+      <button id="stopBtn" disabled>■ Stop feed</button>
+      <label class="toggle">
+        <input type="checkbox" id="asyncToggle" checked />
+        Use applyTransactionAsync
+      </label>
+      <button id="flushBtn">flushAsyncTransactions()</button>
+    </div>
+    <div class="stats">
+      <div class="stat stat-sent">
+        Transactions sent
+        <b id="sent">0</b>
+      </div>
+      <div class="stat stat-batches">
+        Batches applied by grid
+        <b id="batches">0</b>
+      </div>
+    </div>
+    <div id="grid" class="ag-theme-quartz"></div>
+
+    <script>
+      // ---- 1. Initial data ----
+      const symbols = [
+        "AAPL",
+        "MSFT",
+        "GOOG",
+        "AMZN",
+        "META",
+        "NVDA",
+        "TSLA",
+        "NFLX",
+        "ORCL",
+        "INTC",
+        "AMD",
+        "IBM",
+        "CRM",
+        "ADBE",
+        "PYPL",
+        "UBER",
+        "SHOP",
+        "SQ",
+        "SNOW",
+        "PLTR",
+      ];
+      const rowData = symbols.map((symbol) => ({
+        symbol,
+        price: +(50 + Math.random() * 450).toFixed(2),
+        change: 0,
+        volume: 0,
+        sector: ["Tech", "Consumer", "Finance"][Math.floor(Math.random() * 3)],
+      }));
+
+      // ---- 2. Grid setup ----
+      let batchCount = 0;
+      const gridOptions = {
+        rowData,
+        // Required so updates/removes can find existing rows by ID
+        getRowId: (params) => params.data.symbol,
+        columnDefs: [
+          {
+            field: "sector",
+            rowGroup: false,
+            cellRenderer: (p) =>
+              `<span class="sector-badge sector-${p.value}">${p.value}</span>`,
+          },
+          { field: "symbol", cellClass: "symbol-cell" },
+          {
+            field: "price",
+            valueFormatter: (p) => p.value.toFixed(2),
+            cellRenderer: "agAnimateShowChangeCellRenderer",
+          },
+          {
+            field: "change",
+            cellRenderer: (p) =>
+              `<span class="change-pill ${p.value >= 0 ? "change-up" : "change-down"}">` +
+              `${p.value >= 0 ? "▲" : "▼"} ${Math.abs(p.value).toFixed(2)}</span>`,
+          },
+          { field: "volume", sort: "desc" }, // sorting makes each sync update expensive
+        ],
+        defaultColDef: { flex: 1, sortable: true, filter: true },
+        // How long the grid waits to collect async transactions before applying them (default 50ms)
+        asyncTransactionWaitMillis: 100,
+        // Fires each time a batch of async transactions is applied
+        onAsyncTransactionsFlushed: (event) => {
+          batchCount++;
+          document.getElementById("batches").textContent = batchCount;
+          console.log(
+            `Applied ${event.results.length} transactions in one batch`,
+          );
+        },
+      };
+      const gridApi = agGrid.createGrid(
+        document.getElementById("grid"),
+        gridOptions,
+      );
+
+      // ---- 3. Simulated live feed ----
+      let rafId = null;
+      let sentCount = 0;
+
+      function sendRandomUpdate() {
+        const row = rowData[Math.floor(Math.random() * rowData.length)];
+        const delta = +(Math.random() * 4 - 2).toFixed(2);
+        row.price = +(row.price + delta).toFixed(2);
+        row.change = delta;
+        row.volume += Math.floor(Math.random() * 1000);
+
+        const transaction = { update: [{ ...row }] };
+
+        if (document.getElementById("asyncToggle").checked) {
+          // Queued and applied with others in the next batch
+          gridApi.applyTransactionAsync(transaction, (result) => {
+            // Optional: runs when this transaction is actually applied
+            // result.update contains the updated RowNodes
+          });
+        } else {
+          // Applied immediately: re-sort and re-render on every call
+          gridApi.applyTransaction(transaction);
+          batchCount++;
+          document.getElementById("batches").textContent = batchCount;
+        }
+
+        sentCount++;
+        document.getElementById("sent").textContent = sentCount;
+      }
+
+      function tick() {
+        sendRandomUpdate();
+        rafId = requestAnimationFrame(tick);
+      }
+
+      document.getElementById("startBtn").onclick = () => {
+        if (rafId !== null) return;
+        rafId = requestAnimationFrame(tick); // one update per frame (~60/sec)
+        startBtn.disabled = true;
+        stopBtn.disabled = false;
+      };
+      document.getElementById("stopBtn").onclick = () => {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+        gridApi.flushAsyncTransactions(); // apply anything still queued
+        startBtn.disabled = false;
+        stopBtn.disabled = true;
+      };
+      // Force-apply the queue immediately instead of waiting for asyncTransactionWaitMillis
+      document.getElementById("flushBtn").onclick = () =>
+        gridApi.flushAsyncTransactions();
+    </script>
+  </body>
+</html>
